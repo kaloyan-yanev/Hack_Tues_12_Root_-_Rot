@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\rootandrot.client"
+    "\\rootandrot.client",
+    "\\RootAndRot.Server"
   ],
-  "SelectedNode": "\\RootAndRot.slnx",
+  "SelectedNode": "\\RootAndRot.Server\\RootAndRot.Server.csproj",
   "PreviewInSolutionExplorer": false
 }

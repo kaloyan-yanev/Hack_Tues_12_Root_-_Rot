@@ -7,6 +7,7 @@
     <SpaRoot>..\rootandrot.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:58665</SpaProxyServerUrl>
+    <UserSecretsId>9c2edda9-1331-4806-9db5-0c29fb312fe8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
