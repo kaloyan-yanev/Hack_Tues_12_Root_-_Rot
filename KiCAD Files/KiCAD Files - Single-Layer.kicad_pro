@@ -464,7 +464,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "KiCAD Files-Auto.kicad_pro",
+    "filename": "KiCAD Files - Single-Layer.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -486,6 +486,20 @@
         "via_diameter": 3.0,
         "via_drill": 0.5,
         "wire_width": 6
+      },
+      {
+        "clearance": 0.5,
+        "diff_pair_gap": 0.5,
+        "diff_pair_width": 0.5,
+        "microvia_diameter": 1.0,
+        "microvia_drill": 0.2,
+        "name": "Power",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.2,
+        "via_diameter": 3.0,
+        "via_drill": 0.5
       }
     ],
     "meta": {
@@ -495,27 +509,27 @@
     "netclass_assignments": null,
     "netclass_patterns": [
       {
-        "netclass": "Default",
+        "netclass": "Power",
         "pattern": "*V*"
       },
       {
-        "netclass": "Default",
+        "netclass": "Power",
         "pattern": "GND"
       },
       {
-        "netclass": "Default",
+        "netclass": "Power",
         "pattern": "Net-(J4-*"
       },
       {
-        "netclass": "Default",
+        "netclass": "Power",
         "pattern": "Net-(J3-*"
       },
       {
-        "netclass": "Default",
+        "netclass": "Power",
         "pattern": "*D2-A*"
       },
       {
-        "netclass": "Default",
+        "netclass": "Power",
         "pattern": "Net-(J1-*"
       }
     ]
