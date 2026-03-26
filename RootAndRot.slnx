@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="rootandrot.client/rootandrot.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="RootAndRot.Server/RootAndRot.Server.csproj" />
+</Solution>
