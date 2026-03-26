@@ -28,6 +28,8 @@
 // 2. CONSTANTS
 // =======================================================
 
+const unsigned long interval = 15UL * 60UL * 1000UL; // 15 minutes is the time interval by which information is sent to the server
+
 #define ADC_REF_VOLTAGE 3.3
 #define ADC_RESOLUTION 4095.0
 
@@ -120,38 +122,31 @@ float getFlowRate() {
 
 
 // =======================================================
-// 7. SENSOR API
+// SENSOR API (DUMMY VERSION - RANDOMIZED)
 // =======================================================
 
+float randomFloat(float minVal, float maxVal) {
+    return minVal + (float)random(0, 1000) / 1000.0 * (maxVal - minVal);
+}
+
 float getTemp1() {
-    sensors.requestTemperatures();
-    return sensors.getTempC(tempSensor1);
+    return randomFloat(22.0, 28.0);
 }
 
 float getTemp2() {
-    sensors.requestTemperatures();
-    return sensors.getTempC(tempSensor2);
+    return randomFloat(22.5, 29.0);
 }
 
 float getMethane() {
-    float v = readVoltage(METHANE_PIN);
-    return getPPM(getRs(v), R0_MQ2, MQ2_A, MQ2_B);
+    return randomFloat(150.0, 600.0);
 }
 
 float getCO2() {
-    float v = readVoltage(CO2_PIN);
-    return getPPM(getRs(v), R0_MQ135, MQ135_A, MQ135_B);
+    return randomFloat(400.0, 1200.0);
 }
 
 float getHumidity() {
-    float v = readVoltage(HUM_PIN);
-
-    float h = (v - 0.8) * (100.0 / (3.0 - 0.8));
-
-    if (h < 0) h = 0;
-    if (h > 100) h = 100;
-
-    return h;
+    return randomFloat(30.0, 80.0);
 }
 
 
@@ -366,15 +361,29 @@ void loop() {
     if (!client.connected()) {
         reconnect();
     }
-
     client.loop();
 
-    static unsigned long lastMsg = 0;
+    static unsigned long lastSend = 0;
 
-    if (millis() - lastMsg > 10000) {
-        lastMsg = millis();
+    if (millis() - lastSend >= interval) {
+        lastSend = millis();
 
-        String msg = "system running";
-        client.publish(pubTopic.c_str(), msg.c_str());
+        StaticJsonDocument<512> doc;
+
+        doc["id"] = module_name;
+
+        doc["temp1"] = getTemp1();
+        doc["temp2"] = getTemp2();
+
+        doc["methane"] = getMethane();
+        doc["co2"] = getCO2();
+        doc["humidity"] = getHumidity();
+
+        doc["flow"] = getFlowRate();
+
+        char buffer[512];
+        serializeJson(doc, buffer);
+
+        client.publish(pubTopic.c_str(), buffer);
     }
-}
+}s
