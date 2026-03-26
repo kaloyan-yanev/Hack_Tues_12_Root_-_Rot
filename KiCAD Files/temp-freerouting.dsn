@@ -1,4 +1,4 @@
-(pcb freerouting.dsn
+(pcb "/home/kaloyan/Projects/Hack_Tues_12_Root_-_Rot/KiCAD Files/temp-freerouting.dsn"
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)
