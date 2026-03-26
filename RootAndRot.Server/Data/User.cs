@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace RootAndRot.Server.Data;
 
-namespace RootAndRot.Server.Data;
-
-public partial class User
+public class User
 {
     public Guid UserId { get; set; }
 
@@ -12,4 +9,6 @@ public partial class User
     public string Password { get; set; } = null!;
 
     public virtual ICollection<Device> Devices { get; set; } = new List<Device>();
+
+    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }

@@ -1,8 +1,36 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using RootAndRot.Server.Data;
 using RootAndRot.Server.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+const string JwtIssuer = "RootAndRot.Server";
+const string JwtAud = "RootAndRot.Server";
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(opts =>
+    {
+        opts.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = JwtIssuer,
+            ValidAudience = JwtAud,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("JwtKey")),
+            ClockSkew = TimeSpan.Zero,
+        };
+    });
+
+builder.Services.AddAuthorization();
+
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
@@ -13,7 +41,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddTransient<IRegistrationService, RegistrationService>();
 builder.Services.AddTransient<IComposterService, ComposterService>();
 builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
 
@@ -33,6 +60,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

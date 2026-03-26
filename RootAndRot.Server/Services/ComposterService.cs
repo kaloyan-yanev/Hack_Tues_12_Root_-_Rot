@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using RootAndRot.Server.Data;
 using RootAndRot.Server.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace RootAndRot.Server.Services
 {
@@ -11,9 +12,31 @@ namespace RootAndRot.Server.Services
         {
             _context = context;
         }
-        public Task AddDevice(string MAC)
+        public async Task AddDevice(string MAC, Guid Userid)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users
+            .Include(u => u.Devices)
+            .FirstOrDefaultAsync(x => x.UserId == Userid);
+
+            // 2. Намираме устройството по неговия MAC адрес
+            var device = await _context.Devices
+                .FirstOrDefaultAsync(x => x.Macaddress == MAC);
+
+            // 3. Проверка дали потребителят и устройството съществуват
+            if (user == null || device == null)
+            {
+                throw new Exception("Потребителят или устройството не са намерени.");
+            }
+
+            // 4. Проверяваме дали устройството вече не е добавено към този потребител
+            if (!user.Devices.Any(d => d.DeviceId == device.DeviceId))
+            {
+                user.Devices.Add(device);
+
+                // EF Core автоматично разпознава промяната в Many-to-Many връзката,
+                // затова _context.Users.Update(user) не е строго задължително тук.
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<float> ChangeTempTreshold(TempThresholdFactors factors)
@@ -21,9 +44,12 @@ namespace RootAndRot.Server.Services
             return factors.CalculateTempThreshold();
         }
 
-        public Task<IEnumerable<Device>> GetAllDataPerProfile(Guid Userid)
+        public async Task<IEnumerable<Device>> GetAllDataPerProfile(Guid Userid)
         {
-            throw new NotImplementedException();
+            return await _context.Users
+             .Where(u => u.UserId == Userid)
+             .SelectMany(u => u.Devices)
+             .ToListAsync();
         }
     }
 }

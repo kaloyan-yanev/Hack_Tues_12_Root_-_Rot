@@ -21,7 +21,7 @@ namespace RootAndRot.Server.Models
                 Temp = device.Temperature,
                 Humidity = device.Humidity,
                 Methane = device.Methane,
-                CO2 = device.C02,
+                CO2 = device.CO2,
                 progress = CalculateProgress()
             };
         }

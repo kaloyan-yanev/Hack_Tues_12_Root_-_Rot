@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace RootAndRot.Server.Data;
 
-namespace RootAndRot.Server.Data;
-
-public partial class Device
+public class Device
 {
     public Guid DeviceId { get; set; }
 
     public string Macaddress { get; set; } = null!;
-
-    public string Ipaddress { get; set; } = null!;
 
     public string Name { get; set; } = null!;
 
@@ -23,7 +18,7 @@ public partial class Device
 
     public int Methane { get; set; }
 
-    public int C02 { get; set; }
+    public int CO2 { get; set; }
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

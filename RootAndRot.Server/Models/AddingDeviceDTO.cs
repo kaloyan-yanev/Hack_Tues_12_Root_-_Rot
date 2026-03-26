@@ -1,7 +1,9 @@
-﻿namespace RootAndRot.Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RootAndRot.Server.Models
 {
     public class AddingDeviceDTO
     {
-        string MACAddress { get; set; }
+        public string MACAddress { get; set; } = null!;
     }
 }

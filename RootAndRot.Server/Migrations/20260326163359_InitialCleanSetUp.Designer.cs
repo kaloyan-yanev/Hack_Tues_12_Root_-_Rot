@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RootAndRot.Server.Data;
 
@@ -11,9 +12,11 @@ using RootAndRot.Server.Data;
 namespace RootAndRot.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260326163359_InitialCleanSetUp")]
+    partial class InitialCleanSetUp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,10 +74,9 @@ namespace RootAndRot.Server.Migrations
 
             modelBuilder.Entity("RootAndRot.Server.Data.RefreshToken", b =>
                 {
-                    b.Property<Guid>("RefreshTokenId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
                         .HasMaxLength(100)
-                        .HasColumnType("char(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<bool>("Consumed")
                         .HasColumnType("tinyint(1)");
@@ -82,14 +84,10 @@ namespace RootAndRot.Server.Migrations
                     b.Property<DateTime>("ExpiresAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
 
-                    b.HasKey("RefreshTokenId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
