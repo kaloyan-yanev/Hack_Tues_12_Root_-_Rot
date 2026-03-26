@@ -16,12 +16,12 @@ namespace RootAndRot.Server.Services
             throw new NotImplementedException();
         }
 
-        public async Task ChangeTempTreshold(TempThresholdFactors factors)
+        public async Task<float> ChangeTempTreshold(TempThresholdFactors factors)
         {
-            await factors.CalculateTempThreshold();
+            return factors.CalculateTempThreshold();
         }
 
-        public Task<IEnumerable<Device>> GetAllDataPerDevice(Guid id)
+        public Task<IEnumerable<Device>> GetAllDataPerProfile(Guid Userid)
         {
             throw new NotImplementedException();
         }

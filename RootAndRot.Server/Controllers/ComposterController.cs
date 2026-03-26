@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RootAndRot.Server.Data;
 using RootAndRot.Server.Models;
 using RootAndRot.Server.Services;
 
@@ -11,7 +12,7 @@ namespace RootAndRot.Server.Controllers
         {
             _composterService = composterService;
         }
-
+        [HttpPost]
         public async Task<IActionResult> ChangeTempTreshold(ChangingTempTresholdDTO dto)
         {
             TempThresholdFactors factors = new TempThresholdFactors()
@@ -21,6 +22,18 @@ namespace RootAndRot.Server.Controllers
                 placeholder3 = dto.placeholder3,
             };
             await _composterService.ChangeTempTreshold(factors);
+            return Ok();
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllData(Guid Userid)
+        {
+            var devices = (await _composterService.GetAllDataPerProfile(Userid)).Select(DeviceDataDTO.FromDevice).ToList();
+            return Ok(devices);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddDevice(string MAC)
+        {
+            await _composterService.AddDevice(MAC);
             return Ok();
         }
     }
