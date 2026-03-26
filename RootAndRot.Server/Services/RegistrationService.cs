@@ -10,11 +10,13 @@ namespace RootAndRot.Server.Services
         {
             _context = context;
         }
-        public async Task RegisterUser(RegistrationDTO dto)
+        public async Task RegisterUser(string name, string password)
         {
-            User user = new User();
-            user.Name = dto.Name;
-            user.Password = dto.Password;
+            User user = new User()
+            {
+                Name = name,
+                Password = password
+            };
             _context.Add(user);
             await _context.SaveChangesAsync();
         }

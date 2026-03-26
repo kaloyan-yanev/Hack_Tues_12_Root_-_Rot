@@ -5,7 +5,7 @@ namespace RootAndRot.Server.Data;
 
 public partial class Device
 {
-    public ulong DeviceId { get; set; }
+    public Guid DeviceId { get; set; }
 
     public string Macaddress { get; set; } = null!;
 

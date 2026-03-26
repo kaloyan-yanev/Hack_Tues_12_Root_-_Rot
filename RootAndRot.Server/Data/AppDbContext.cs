@@ -22,7 +22,7 @@ public partial class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=10.245.172.43;database=hacktues;uid=Burgaski_Glarusi;pwd=Dildoto_n@_pepelqshk4", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.11.16-mariadb"));
+        => optionsBuilder.UseMySql("server=localhost;database=hacktues;uid=root;pwd=1234", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.11.16-mariadb"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,8 +35,9 @@ public partial class AppDbContext : DbContext
             entity.HasKey(e => e.DeviceId).HasName("PRIMARY");
 
             entity.Property(e => e.DeviceId)
-                .HasColumnType("bigint(20) unsigned")
-                .HasColumnName("DeviceID");
+                .HasColumnType("char(36)")
+                .HasColumnName("DeviceID")
+                .HasDefaultValueSql("(UUID())");
             entity.Property(e => e.C02).HasColumnType("int(11)");
             entity.Property(e => e.HumThreshold).HasColumnName("Hum_Threshold");
             entity.Property(e => e.Ipaddress)
@@ -56,8 +57,9 @@ public partial class AppDbContext : DbContext
             entity.HasKey(e => e.UserId).HasName("PRIMARY");
 
             entity.Property(e => e.UserId)
-                .HasColumnType("bigint(20) unsigned")
-                .HasColumnName("UserID");
+                .HasColumnType("char(36)")
+                .HasColumnName("UserID")
+                .HasDefaultValueSql("(UUID())");
             entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.Password).HasMaxLength(60);
 
@@ -79,11 +81,11 @@ public partial class AppDbContext : DbContext
                             .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
                         j.ToTable("UsersDevices");
                         j.HasIndex(new[] { "DeviceId" }, "DeviceID");
-                        j.IndexerProperty<ulong>("UserId")
-                            .HasColumnType("bigint(20) unsigned")
+                        j.IndexerProperty<Guid>("UserId")
+                            .HasColumnType("char(36)")
                             .HasColumnName("UserID");
-                        j.IndexerProperty<ulong>("DeviceId")
-                            .HasColumnType("bigint(20) unsigned")
+                        j.IndexerProperty<Guid>("DeviceId")
+                            .HasColumnType("char(36)")
                             .HasColumnName("DeviceID");
                     });
         });

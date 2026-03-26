@@ -5,7 +5,7 @@ namespace RootAndRot.Server.Data;
 
 public partial class User
 {
-    public ulong UserId { get; set; }
+    public Guid UserId { get; set; }
 
     public string Name { get; set; } = null!;
 

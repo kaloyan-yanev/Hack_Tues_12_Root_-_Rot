@@ -13,7 +13,9 @@ namespace RootAndRot.Server.Controllers
         }
         public async Task<IActionResult> Register(RegistrationDTO dto)
         {
-            await _registrationService.RegisterUser(dto);
+            string name = dto.Name;
+            string password = dto.Password;
+            await _registrationService.RegisterUser(name,password);
             return Ok();
         }
     }
