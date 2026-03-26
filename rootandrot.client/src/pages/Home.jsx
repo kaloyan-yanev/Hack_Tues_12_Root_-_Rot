@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import NavBar from '../components/NavBar'
 import styles from './Home.module.css';
 
 function Home() {
-  return (
-    <p>Hello world!</p>
+    return (
+        <div className={styles.page}>
+                <NavBar/>
+        </div>
   );
 }
 

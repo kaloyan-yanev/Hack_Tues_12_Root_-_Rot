@@ -1,0 +1,161 @@
+import { useState, useRef, useEffect } from "react";
+import styles from "./NavBar.module.css";
+
+// ─── Confirmation Popup ───────────────────────────────────────────────────────
+function ConfirmPopup({ onConfirm, onCancel }) {
+    return (
+        <div className={styles.popupOverlay} onClick={onCancel}>
+            <div className={styles.popupCard} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.popupIcon}>🗑️</div>
+                <h2 className={styles.popupTitle}>Remove Composter?</h2>
+                <p className={styles.popupSubtitle}>
+                    This action cannot be undone. The composter will be permanently removed.
+                </p>
+                <div className={styles.popupActions}>
+                    <button className={styles.popupCancel} onClick={onCancel}>Cancel</button>
+                    <button className={styles.popupConfirm} onClick={onConfirm}>Yes, remove it</button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ─── NavBar ───────────────────────────────────────────────────────────────────
+export function NavBar({ onAddComposter, onRemoveMode }) {
+    const [addState, setAddState] = useState("idle"); // "idle" | "input" | "success"
+    const [inputValue, setInputValue] = useState("");
+    const [removeActive, setRemoveActive] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    const [pendingTarget, setPendingTarget] = useState(null);
+    const inputRef = useRef(null);
+    const successTimer = useRef(null);
+
+    // Focus input when it appears
+    useEffect(() => {
+        if (addState === "input") inputRef.current?.focus();
+    }, [addState]);
+
+    // Toggle body class for crosshair cursor
+    useEffect(() => {
+        document.body.classList.toggle("remove-mode", removeActive);
+        return () => document.body.classList.remove("remove-mode");
+    }, [removeActive]);
+
+    // Expose remove-request bridge for container components
+    useEffect(() => {
+        window.__navbarRequestRemove = (target, onConfirmed) => {
+            if (!removeActive) return;
+            setPendingTarget({ target, onConfirmed });
+            setShowPopup(true);
+        };
+        return () => { delete window.__navbarRequestRemove; };
+    }, [removeActive]);
+
+    // ── Add composter ───────────────────────────────────────────────────────────
+    const handleAddClick = () => {
+        if (addState === "idle") setAddState("input");
+    };
+
+    const handleInputKeyDown = (e) => {
+        if (e.key === "Enter") {
+            const id = inputValue.trim();
+            if (!id) return;
+
+            // 🔌 Wire up your ASP.NET endpoint here:
+            // fetch('/api/composters/add', { method: 'POST', body: JSON.stringify({ id }) })
+            if (onAddComposter) onAddComposter(id);
+
+            setInputValue("");
+            setAddState("success");
+            clearTimeout(successTimer.current);
+            successTimer.current = setTimeout(() => setAddState("idle"), 1600);
+        }
+        if (e.key === "Escape") {
+            setInputValue("");
+            setAddState("idle");
+        }
+    };
+
+    const handleInputBlur = () => {
+        if (addState === "input") {
+            setInputValue("");
+            setAddState("idle");
+        }
+    };
+
+    // ── Remove composter ────────────────────────────────────────────────────────
+    const handleRemoveToggle = () => {
+        const next = !removeActive;
+        setRemoveActive(next);
+        if (onRemoveMode) onRemoveMode(next);
+    };
+
+    const handlePopupConfirm = () => {
+        if (pendingTarget?.onConfirmed) pendingTarget.onConfirmed(pendingTarget.target);
+        setShowPopup(false);
+        setPendingTarget(null);
+    };
+
+    const handlePopupCancel = () => {
+        setShowPopup(false);
+        setPendingTarget(null);
+    };
+
+    // ── Render ──────────────────────────────────────────────────────────────────
+    return (
+        <>
+            <nav className={styles.navbar}>
+                <span className={styles.brand}>🌿 Root Rot</span>
+
+                <div className={styles.center}>
+                    {addState === "input" ? (
+                        <input
+                            ref={inputRef}
+                            className={styles.addInput}
+                            type="text"
+                            placeholder="Enter ID…"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={handleInputKeyDown}
+                            onBlur={handleInputBlur}
+                        />
+                    ) : (
+                        <button
+                            className={`${styles.addBtn}${addState === "success" ? ` ${styles.success}` : ""}`}
+                            onClick={handleAddClick}
+                        >
+                            {addState === "success" ? (
+                                <span className={styles.successText}>✓ Success!</span>
+                            ) : (
+                                <>
+                                    <span className={styles.addBtnIcon}>+</span>
+                                    Add composter
+                                </>
+                            )}
+                        </button>
+                    )}
+
+                    <button
+                        className={`${styles.removeBtn}${removeActive ? ` ${styles.active}` : ""}`}
+                        onClick={handleRemoveToggle}
+                        title={removeActive ? "Click again to cancel" : "Enable remove mode"}
+                    >
+                        <span className={styles.removeDot} />
+                        {removeActive ? "Remove mode ON" : "Remove composter"}
+                    </button>
+                </div>
+
+                <a href="/login" className={styles.loginBtn}>
+                    Login
+                    <span style={{ fontSize: 13, opacity: 0.7 }}>→</span>
+                </a>
+            </nav>
+
+            {showPopup && (
+                <ConfirmPopup onConfirm={handlePopupConfirm} onCancel={handlePopupCancel} />
+            )}
+        </>
+    );
+}
+
+export default NavBar;

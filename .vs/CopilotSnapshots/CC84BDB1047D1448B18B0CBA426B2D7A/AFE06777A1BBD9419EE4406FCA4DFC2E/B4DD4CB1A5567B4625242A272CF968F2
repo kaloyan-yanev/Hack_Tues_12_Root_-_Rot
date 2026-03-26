@@ -1,0 +1,107 @@
+﻿import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import styles from './Login.module.css';
+import PassIn from '../components/PassInput'
+import EmailIn from '../components/EmailInput'
+
+export default function Login() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const returnUrl =
+        new URLSearchParams(location.search).get("returnUrl") || "/";
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    function validate() {
+        if (!email.trim()) return "Email is required.";
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRe.test(email)) return "Enter a valid email address.";
+        if (!password) return "Password is required.";
+        if (password.length < 6) return "Password must be at least 6 characters.";
+        return "";
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setError("");
+        const validationError = validate();
+        if (validationError) {
+            setError(validationError);
+            return;
+        }
+
+        setLoading(true);
+        try {
+            const resp = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email.trim(), password }),
+            });
+
+            if (!resp.ok) {
+                const payload = await resp.json().catch(() => ({}));
+                throw new Error(payload?.message || "Login failed");
+            }
+
+            const data = await resp.json();
+            if (!data?.token) throw new Error("Invalid server response.");
+
+            localStorage.setItem("authToken", data.token);
+            navigate(returnUrl, { replace: true });
+        } catch (err) {
+            setError(err.message || "An unexpected error occurred.");
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    return (
+        <>
+        <img className={styles.farmer} src="/public/farmer1.jpg"></img>,
+        <div className={styles.container}>
+            <a href="/signup" className={styles.signup}>
+                No account? Sign up
+            </a>
+            <form onSubmit={handleSubmit} className={styles.form} aria-label="login form">
+                <h2 className={styles.title}>Sign in</h2>
+
+                {error && <div role="alert" className={styles.error}>{error}</div>}
+
+                <label className={styles.label}>
+                    Email
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={styles.input}
+                        placeholder="you@example.com"
+                        autoComplete="email"
+                        required
+                    />
+                </label>
+
+                <label className={styles.label}>
+                    Password
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className={styles.input}
+                        placeholder="Your password"
+                        autoComplete="current-password"
+                        required
+                    />
+                </label>
+
+                <button type="submit" className={styles.button} disabled={loading}>
+                    {loading ? "Signing in..." : "Sign in"}
+                </button>
+
+            </form>
+            </div>
+        </>
+    );
+}

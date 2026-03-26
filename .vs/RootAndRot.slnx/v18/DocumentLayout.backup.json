@@ -3,36 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\pages\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\pages\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\pages\\signup.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\pages\\signup.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\pages\\login.module.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\pages\\login.module.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\pages\\login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\pages\\login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\pages\\home.module.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\pages\\home.module.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\pages\\login.module.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\pages\\login.module.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,11 +26,25 @@
       "DocumentGroups": [
         {
           "DockedHeight": 284,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "App.jsx",
+              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\App.jsx",
+              "RelativeDocumentMoniker": "rootandrot.client\\src\\App.jsx",
+              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\App.jsx",
+              "RelativeToolTip": "rootandrot.client\\src\\App.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-03-26T13:09:35.607Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\App.css",
               "RelativeDocumentMoniker": "rootandrot.client\\src\\App.css",
@@ -54,22 +52,34 @@
               "RelativeToolTip": "rootandrot.client\\src\\App.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-26T11:36:14.922Z",
+              "WhenOpened": "2026-03-26T13:09:42.115Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.module.css",
+              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Login.module.css",
+              "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\Login.module.css",
+              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Login.module.css",
+              "RelativeToolTip": "rootandrot.client\\src\\pages\\Login.module.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-26T13:09:50.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "App.jsx",
-              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\App.jsx",
-              "RelativeDocumentMoniker": "rootandrot.client\\src\\App.jsx",
-              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\App.jsx",
-              "RelativeToolTip": "rootandrot.client\\src\\App.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAATAAAAAAAAAA==",
+              "Title": "Login.jsx",
+              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Login.jsx",
+              "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\Login.jsx",
+              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Login.jsx",
+              "RelativeToolTip": "rootandrot.client\\src\\pages\\Login.jsx",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAQwD4AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-26T11:45:01.209Z",
-              "IsPinned": true,
+              "WhenOpened": "2026-03-26T13:09:48.395Z",
               "EditorCaption": ""
             },
             {
@@ -79,95 +89,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-<<<<<<< Updated upstream
-              "Title": "ComposterController.cs",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "RelativeToolTip": "RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T07:53:06.137Z",
-=======
-              "Title": "main.jsx",
-              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\main.jsx",
-              "RelativeDocumentMoniker": "rootandrot.client\\src\\main.jsx",
-              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\main.jsx",
-              "RelativeToolTip": "rootandrot.client\\src\\main.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-26T12:36:17.066Z",
->>>>>>> Stashed changes
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SignUp.jsx",
-              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\SignUp.jsx",
-              "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\SignUp.jsx",
-              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\SignUp.jsx",
-              "RelativeToolTip": "rootandrot.client\\src\\pages\\SignUp.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-26T12:33:24.307Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Home.jsx",
-              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Home.jsx",
-              "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\Home.jsx",
-              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Home.jsx",
-              "RelativeToolTip": "rootandrot.client\\src\\pages\\Home.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-26T12:26:28.197Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Home.module.css",
-              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Home.module.css",
-              "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\Home.module.css",
-              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Home.module.css",
-              "RelativeToolTip": "rootandrot.client\\src\\pages\\Home.module.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-26T12:26:37.428Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Login.module.css",
-              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Login.module.css",
-              "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\Login.module.css",
-              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Login.module.css",
-              "RelativeToolTip": "rootandrot.client\\src\\pages\\Login.module.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-26T11:37:58.348Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Login.jsx",
-              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Login.jsx",
-              "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\Login.jsx",
-              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Login.jsx",
-              "RelativeToolTip": "rootandrot.client\\src\\pages\\Login.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-26T11:36:33.881Z",
-              "EditorCaption": ""
             }
           ]
         }

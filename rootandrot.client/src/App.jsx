@@ -1,6 +1,7 @@
 //import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
+import '/src/assets/fonts/Satoshi/css/satoshi.css';
 
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
