@@ -1,15 +1,21 @@
 #include <WiFi.h>
 #include <WiFiManager.h>
+#include <PubSubClient.h>
 #include <LittleFS.h>
 #include <ArduinoJson.h>
 
 #define CONFIG_FILE "/config.json"
-String module_name = "mashina 1";
 
-const char* mqtt_server = "10.97.107.205";  // or your broker IP
+String module_name = "imeto se zadava vednuj pri proizvodstvo";
+
+const char* mqtt_server = "10.1.85.205";
 const int mqtt_port = 1883;
 
-// Structure to hold config
+// MQTT topics
+String pubTopic = "machines/sensors/" + module_name;
+String subTopic = "machines/control/temp_tresh/" + module_name;
+
+// ===== CONFIG STRUCT =====
 struct Config {
   String ssid;
   String password;
@@ -18,10 +24,10 @@ struct Config {
   String subnet;
 };
 
-String pubTopic = "machines/" + module_name;
-String subTopic = "control/" + module_name + "/temp_treshhold";
+WiFiClient espClient;
+PubSubClient client(espClient);
 
-// Load config from LittleFS
+// ===== LOAD CONFIG =====
 bool loadConfig(Config &config) {
   if (!LittleFS.exists(CONFIG_FILE)) return false;
 
@@ -29,13 +35,11 @@ bool loadConfig(Config &config) {
   if (!file) return false;
 
   StaticJsonDocument<256> doc;
-  DeserializationError error = deserializeJson(doc, file);
-  file.close();
-
-  if (error) {
-    Serial.println("Failed to parse config");
+  if (deserializeJson(doc, file)) {
+    file.close();
     return false;
   }
+  file.close();
 
   config.ssid     = doc["ssid"].as<String>();
   config.password = doc["password"].as<String>();
@@ -46,7 +50,7 @@ bool loadConfig(Config &config) {
   return true;
 }
 
-// Save config to LittleFS
+// ===== SAVE CONFIG =====
 bool saveConfig(const Config &config) {
   StaticJsonDocument<256> doc;
 
@@ -64,55 +68,53 @@ bool saveConfig(const Config &config) {
   return true;
 }
 
-// Reset config
-void resetLittleFS() {
-  if (LittleFS.exists(CONFIG_FILE)) {
-    LittleFS.remove(CONFIG_FILE);
-    Serial.println("Config erased.");
-  }
-}
-
-// ===== MQTT Callback (runs when message arrives) =====
+// ===== MQTT CALLBACK (FIXED) =====
 void callback(char* topic, byte* payload, unsigned int length) {
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("] ");
 
-  String message;
+  /*String message = "";
+
+  for (int i = 0; i < length; i++) {
+    message += (char)payload[i];
+  }*/
+  Serial.println(topic);
+  String message = "";
+
   for (int i = 0; i < length; i++) {
     message += (char)payload[i];
   }
-  Serial.println(message);
+
+  float temp = message.toFloat();
+
+  Serial.println(temp);
 }
 
-// ===== Reconnect MQTT =====
+// ===== MQTT RECONNECT (SAFE) =====
 void reconnect() {
+
   while (!client.connected()) {
-    Serial.print("Attempting MQTT connection...");
 
-    String clientId = "ESPClient-";
-    clientId += String(random(0xffff), HEX);
+    Serial.print("Connecting to MQTT...");
 
-    if (client.connect(clientId.c_str(), mqtt_user, mqtt_pass)) {
+    if (client.connect("ESP32TestClient")) {
       Serial.println("connected");
-
-      // Subscribe
-      client.subscribe(subTopic);
-
+      client.subscribe(subTopic.c_str());
+      Serial.println("Subscribed to LED topic");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
-      Serial.println(" retrying in 5 seconds...");
-      delay(5000);
+      Serial.println(" retry in 2 seconds");
+
+      delay(2000);
     }
   }
 }
 
-
+// ===== SETUP =====
 void setup() {
   Serial.begin(115200);
   delay(1000);
 
+  // ===== LittleFS =====
   if (!LittleFS.begin(true)) {
     Serial.println("LittleFS mount failed");
     return;
@@ -124,7 +126,7 @@ void setup() {
   WiFiManager wm;
   wm.setTimeout(180);
 
-  // Custom parameters
+  // Custom WiFiManager fields
   WiFiManagerParameter custom_ip("ip", "Static IP", config.ip.c_str(), 16);
   WiFiManagerParameter custom_gw("gw", "Gateway", config.gateway.c_str(), 16);
   WiFiManagerParameter custom_sn("sn", "Subnet", config.subnet.c_str(), 16);
@@ -133,46 +135,43 @@ void setup() {
   wm.addParameter(&custom_gw);
   wm.addParameter(&custom_sn);
 
-  // If we have saved static IP → apply it BEFORE connect
+  // Apply static IP if exists
   if (hasConfig && config.ip != "") {
-    IPAddress ip, gateway, subnet;
+    IPAddress ipAddr, gwAddr, snAddr;
 
-    if (ip.fromString(config.ip) &&
-        gateway.fromString(config.gateway) &&
-        subnet.fromString(config.subnet)) {
+    if (ipAddr.fromString(config.ip) &&
+        gwAddr.fromString(config.gateway) &&
+        snAddr.fromString(config.subnet)) {
 
-      Serial.println("Applying saved static IP...");
-      wm.setSTAStaticIPConfig(ip, gateway, subnet);
+      Serial.println("Using saved static IP...");
+      wm.setSTAStaticIPConfig(ipAddr, gwAddr, snAddr);
     }
   }
 
-  // Try auto connect or open portal
+  // Connect WiFi
   if (!wm.autoConnect("ESP32-AP")) {
-    Serial.println("Failed to connect (timeout)");
-    return;
+    Serial.println("WiFi failed");
+    ESP.restart();
   }
 
-  Serial.println("Connected to WiFi!");
-  Serial.print("IP Address: ");
+  Serial.println("WiFi connected");
   Serial.println(WiFi.localIP());
 
-  // Save config after connection
+  // Save config
   config.ssid     = WiFi.SSID();
-  config.password = WiFi.psk();
+  config.password = WiFi.psk(); // WiFi.psk() unreliable on ESP32
   config.ip       = custom_ip.getValue();
   config.gateway  = custom_gw.getValue();
   config.subnet   = custom_sn.getValue();
 
-  if (saveConfig(config)) {
-    Serial.println("Config saved.");
-  } else {
-    Serial.println("Failed to save config.");
-  }
+  saveConfig(config);
 
+  // MQTT setup
   client.setServer(mqtt_server, mqtt_port);
   client.setCallback(callback);
 }
 
+// ===== LOOP =====
 void loop() {
   if (!client.connected()) {
     reconnect();
@@ -180,15 +179,17 @@ void loop() {
 
   client.loop();
 
-  // ===== Publish every 5 seconds =====
+
   static unsigned long lastMsg = 0;
-  if (millis() - lastMsg > 5000) {
+
+  if (millis() - lastMsg > 10000) {
     lastMsg = millis();
 
-    String msg = "Hello from ESP";
+    String msg = "Hello from " + module_name;
+
     Serial.print("Publishing: ");
     Serial.println(msg);
 
-    client.publish(pubTopic, msg.c_str());
+    client.publish(pubTopic.c_str(), msg.c_str());
   }
 }
