@@ -34,7 +34,8 @@ def on_message(client, userdata, msg):
     except:
         print("Data not in right format")
     
-    DevicesQuery = "UPDATE Devices SET Temperature = %s, Humidity = %s, Methane = %s, CO2 = %s WHERE MACAddress = %s;"
+    
+        Query = "UPDATE Devices SET Temperature = %s, Humidity = %s, Methane = %s, CO2 = %s WHERE MACAddress = %s;"
     values = (Temperature, Humidity, Methane, co2, Name)
     cursor.execute(DevicesQuery, values)
     '''cursor.execute(UpdateQuery, values)

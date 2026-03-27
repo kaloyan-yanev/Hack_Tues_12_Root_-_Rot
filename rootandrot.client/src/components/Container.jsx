@@ -27,7 +27,18 @@ function Container({ device, isSelected, onSelect, onRemove }) {
 
   if (!device) {
     return null;
-  }
+    }
+    console.log("Raw Response Body1:", device);
+
+  // Ensure device has all required properties
+const deviceData = {
+    MAC: device.mac|| "Unknown",
+    Temp: device.temp ?? 0,
+    Humidity: device.humidity ?? 0,
+    Methane: device.methane ?? 0,
+    CO2: device.cO2 ?? 0,   // C# serializes "CO2" as "cO2"
+    Progress: device.progress ?? 0
+};
 
   return (
     <div
@@ -37,7 +48,7 @@ function Container({ device, isSelected, onSelect, onRemove }) {
       <div className={styles.header}>
         <div className={styles.id}>
           <span className={styles.label}>ID:</span>
-          <span className={styles.value}>{device.MAC}</span>
+          <span className={styles.value}>{deviceData.MAC}</span>
         </div>
         {isSelected && (
           <button 
@@ -58,7 +69,7 @@ function Container({ device, isSelected, onSelect, onRemove }) {
               <label key={index} className={styles.radioLabel}>
                 <input
                   type="radio"
-                  name={`threshold-${device.MAC}`}
+                  name={`threshold-${deviceData.MAC}`}
                   checked={tempThreshold === index}
                   onChange={() => handleThresholdChange(index)}
                   className={styles.radioInput}
@@ -72,33 +83,33 @@ function Container({ device, isSelected, onSelect, onRemove }) {
         <div className={styles.metricsGrid}>
           <div className={styles.metric}>
             <span className={styles.metricLabel}>Methane:</span>
-            <span className={styles.metricValue}>{device.Methane}%</span>
+            <span className={styles.metricValue}>{deviceData.Methane}%</span>
           </div>
           <div className={styles.metric}>
             <span className={styles.metricLabel}>CO₂:</span>
-            <span className={styles.metricValue}>{device.CO2}%</span>
+            <span className={styles.metricValue}>{deviceData.CO2}%</span>
           </div>
           <div className={styles.metric}>
             <span className={styles.metricLabel}>Humidity:</span>
-            <span className={styles.metricValue}>{device.Humidity.toFixed(1)}%</span>
+            <span className={styles.metricValue}>{deviceData.Humidity.toFixed(1)}%</span>
           </div>
           <div className={styles.metric}>
             <span className={styles.metricLabel}>Temperature:</span>
-            <span className={styles.metricValue}>{device.Temp.toFixed(1)}°C</span>
+            <span className={styles.metricValue}>{deviceData.Temp.toFixed(1)}°C</span>
           </div>
         </div>
 
         <div className={styles.progressSection}>
           <div className={styles.progressLabel}>
             <span>Progress</span>
-            <span>{device.progress.toFixed(1)}%</span>
+            <span>{deviceData.Progress.toFixed(1)}%</span>
           </div>
           <div className={styles.progressBarContainer}>
             <div
               className={styles.progressBar}
               style={{
-                width: `${device.progress}%`,
-                backgroundColor: getProgressBarColor(device.progress),
+                width: `${Math.min(100, Math.max(0, deviceData.Progress))}%`,
+                backgroundColor: getProgressBarColor(deviceData.Progress),
               }}
             />
           </div>

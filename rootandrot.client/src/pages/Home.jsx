@@ -20,6 +20,14 @@ function Home() {
             return;
         }
         fetchDevices();
+
+        // Set up polling interval to check for changes every 10 seconds
+        const intervalId = setInterval(() => {
+            fetchDevices();
+        }, 10000); // 10 seconds
+
+        // Cleanup interval on unmount
+        return () => clearInterval(intervalId);
     }, [navigate]);
 
     const fetchDevices = async () => {
@@ -39,6 +47,9 @@ function Home() {
                 }
             });
 
+            console.log("GetAllData Response Status:", resp.status);
+            console.log("GetAllData Response Headers:", resp.headers);
+
             if (resp.status === 401) {
                 localStorage.removeItem("authToken");
                 localStorage.removeItem("refreshToken");
@@ -47,13 +58,24 @@ function Home() {
             }
 
             if (!resp.ok) {
-                throw new Error("Failed to fetch devices");
+                const text = await resp.text();
+                console.error("Response Error Text:", text);
+                throw new Error(`HTTP ${resp.status}: ${text || "Unknown error"}`);
             }
 
-            const data = await resp.json();
+            const text = await resp.text();
+            console.log("Raw Response Body:", text);
+
+            if (!text) {
+                throw new Error("Empty response from server");
+            }
+
+            const data = JSON.parse(text);
+            console.log("Parsed Device Data:", data);
             setDevices(data);
             setError("");
         } catch (err) {
+            console.error("Full Error Object:", err);
             setError(err.message || "Error loading devices");
             console.error(err);
         } finally {
