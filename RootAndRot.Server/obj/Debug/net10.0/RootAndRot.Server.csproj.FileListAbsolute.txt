@@ -205,6 +205,7 @@ C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug
 C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\IronPython.Wpf.dll
 C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\IronPython.dll
 C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\Microsoft.AspNetCore.SpaProxy.dll
 C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll

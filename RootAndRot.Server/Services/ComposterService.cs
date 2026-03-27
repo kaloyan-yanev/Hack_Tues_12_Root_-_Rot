@@ -1,16 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Scripting.Hosting;
 using RootAndRot.Server.Data;
 using RootAndRot.Server.Models;
-using Microsoft.EntityFrameworkCore;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 
 namespace RootAndRot.Server.Services
 {
     public class ComposterService : IComposterService
     {
         private readonly AppDbContext _context;
+        private readonly ScriptEngine _engine;
+        private readonly string _scriptsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PythonScripts");
         public ComposterService(AppDbContext context)
         {
             _context = context;
+            _engine = Python.CreateEngine();
         }
         public async Task AddDevice(string MAC, Guid Userid)
         {
@@ -39,9 +45,11 @@ namespace RootAndRot.Server.Services
             }
         }
 
-        public async Task<float> ChangeTempTreshold(TempThresholdFactors factors)
+        public async Task ChangeTempTreshold(Guid DeviceId, TempThresholdFactors factors)
         {
-            return factors.CalculateTempThreshold();
+            Device device = await _context.Devices
+                .FirstOrDefaultAsync(x => x.DeviceId == DeviceId);
+            factors.CalculateTempThreshold();
         }
 
         public async Task<IEnumerable<Device>> GetAllDataPerProfile(Guid Userid)
@@ -50,6 +58,33 @@ namespace RootAndRot.Server.Services
              .Where(u => u.UserId == Userid)
              .SelectMany(u => u.Devices)
              .ToListAsync();
+        }
+        public async Task StirTor(Guid DeviceId)
+        {
+            Device user = await _context.Devices
+                .FirstOrDefaultAsync(x => x.DeviceId == DeviceId);
+            if (user == null)
+            {
+                throw new Exception("Потребителят не е намерен.");
+            }
+            
+        }
+        private void RunScriptFile(string fileName, string mac, object value)
+        {
+            string fullPath = Path.Combine(_scriptsPath, fileName);
+
+            if (!File.Exists(fullPath))
+                throw new FileNotFoundException($"Скриптът не е намерен: {fullPath}");
+
+            // 1. Подготвяме аргументите (първият винаги е името на скрипта)
+            var argv = new List<object>{mac, value};
+
+            // 2. Подаваме аргументите към общата Python среда
+            _engine.GetSysModule().SetVariable("argv", argv);
+
+            // 3. Изпълняваме файла
+            ScriptScope scope = _engine.CreateScope();
+            _engine.ExecuteFile(fullPath, scope);
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pxmJYEk12zQ=",
+  "dgSpecHash": "GVLAOFI0nZM=",
   "success": true,
   "projectFilePath": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\tester\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\tester\\.nuget\\packages\\ironpython\\3.4.2\\ironpython.3.4.2.nupkg.sha512",
     "C:\\Users\\tester\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.0\\microsoft.aspnetcore.authentication.jwtbearer.9.0.0.nupkg.sha512",
+    "C:\\Users\\tester\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\9.0.0\\microsoft.aspnetcore.identity.entityframeworkcore.9.0.0.nupkg.sha512",
     "C:\\Users\\tester\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.5\\microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
     "C:\\Users\\tester\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\10.0.5\\microsoft.aspnetcore.spaproxy.10.0.5.nupkg.sha512",
     "C:\\Users\\tester\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

@@ -38,18 +38,12 @@ public partial class AppDbContext : DbContext
                 .HasDefaultValueSql("(UUID())");
 
             entity.Property(e => e.Macaddress)
-                .HasMaxLength(17)
-                .IsFixedLength()
+                .HasMaxLength(50)
                 .HasColumnName("MACAddress");
 
-            entity.Property(e => e.Name)
-                .HasMaxLength(50);
-
             entity.Property(e => e.TempThreshold)
-                .HasColumnName("Temp_Threshold");
-
-            entity.Property(e => e.HumThreshold)
-                .HasColumnName("Hum_Threshold");
+                .HasColumnName("Temp_Threshold")
+                .HasDefaultValueSql("30");
 
             entity.Property(e => e.Methane)
                 .HasColumnType("int");

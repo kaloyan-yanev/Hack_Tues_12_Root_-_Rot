@@ -20,13 +20,14 @@ namespace RootAndRot.Server.Controllers
         [HttpPost("ChangeTempThreshold")]
         public async Task<IActionResult> ChangeTempTreshold(ChangingTempTresholdDTO dto)
         {
+            Guid DeviceId = dto.DeviceId != null ? Guid.Parse(dto.DeviceId) : throw new ArgumentException("DeviceId cannot be null");
             TempThresholdFactors factors = new TempThresholdFactors()
             {
                 placeholder1 = dto.placeholder1,
                 placeholder2 = dto.placeholder2,
                 placeholder3 = dto.placeholder3,
             };
-            await _composterService.ChangeTempTreshold(factors);
+            await _composterService.ChangeTempTreshold(DeviceId, factors);
             return Ok();
         }
         [HttpGet("GetAllData")]
@@ -51,6 +52,16 @@ namespace RootAndRot.Server.Controllers
                 return BadRequest("Invalid user identity");
             }
             await _composterService.AddDevice(dto.MACAddress, userId);
+            return Ok();
+        }
+        public async Task<IActionResult> StirTor()
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!Guid.TryParse(userIdClaim, out var userId))
+            {
+                return BadRequest("Invalid user identity");
+            }
+            await _composterService.StirTor(userId);
             return Ok();
         }
     }

@@ -6,8 +6,6 @@ public class Device
 
     public string Macaddress { get; set; } = null!;
 
-    public string Name { get; set; } = null!;
-
     public float Temperature { get; set; }
 
     public float TempThreshold { get; set; }
