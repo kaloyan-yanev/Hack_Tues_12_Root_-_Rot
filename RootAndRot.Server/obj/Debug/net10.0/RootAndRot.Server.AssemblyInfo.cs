@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RootAndRot.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e809d3cacc3c894b018c1039cc5bca88753bf46")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d804791d428385924ec39ac89a51818de9fdfbf")]
 [assembly: System.Reflection.AssemblyProductAttribute("RootAndRot.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RootAndRot.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

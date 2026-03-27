@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\RootAndRot.Server",
+    "\\RootAndRot.Server\\Controllers"
   ],
   "SelectedNode": "\\RootAndRot.slnx",
   "PreviewInSolutionExplorer": false

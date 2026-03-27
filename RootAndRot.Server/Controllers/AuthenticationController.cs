@@ -47,7 +47,7 @@ namespace RootAndRot.Server.Controllers
                 return Unauthorized("Invalid credentials.");
 
             // Issue token pair and save refresh token in DB
-            var (accessToken, refreshToken) =
+            (string accessToken, string refreshToken) =
                 await _authenticationService.IssueTokenPair(user, _config["JwtKey"], "RootAndRot.Server", "RootAndRot.Server");
 
             return Ok(new { accessToken, refreshToken });
@@ -74,7 +74,7 @@ namespace RootAndRot.Server.Controllers
             
             var user = refreshTokenEntry.User;
             var (accessToken, refreshToken) =
-                await _authenticationService.IssueTokenPair(user, "JwtKey", "RootAndRot.Server", "RootAndRot.Server");
+                await _authenticationService.IssueTokenPair(user, _config["JwtKey"], "RootAndRot.Server", "RootAndRot.Server");
 
             return Ok(new { accessToken, refreshToken });
         }
