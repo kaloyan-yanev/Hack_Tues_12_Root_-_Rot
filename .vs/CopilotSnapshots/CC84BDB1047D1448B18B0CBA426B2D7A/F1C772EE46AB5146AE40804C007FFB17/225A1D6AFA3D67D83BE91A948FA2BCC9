@@ -56,14 +56,14 @@ namespace RootAndRot.Server.Controllers
         }
 
         [HttpDelete("RemoveDevice")]
-        public async Task<IActionResult> RemoveDevice([FromQuery] Guid deviceId)
+        public async Task<IActionResult> RemoveDevice([FromQuery] RemoveDeviceDTO dto)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userIdClaim == null || userIdClaim == "")
             {
                 return BadRequest("Invalid user identity");
             }
-            await _composterService.RemoveDevice(deviceId, userIdClaim);
+            await _composterService.RemoveDevice(dto.DeviceId, userIdClaim);
             return Ok();
         }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import styles from "./Container.module.css";
 
 function Container({ device, isSelected, onSelect, onRemove }) {
@@ -21,7 +21,7 @@ function Container({ device, isSelected, onSelect, onRemove }) {
   const handleRemoveClick = (e) => {
     e.stopPropagation();
     if (window.__navbarRequestRemove) {
-      window.__navbarRequestRemove(device.deviceID, onRemove);
+      window.__navbarRequestRemove(device.DeviceID, onRemove);
     }
   };
 
@@ -32,13 +32,13 @@ function Container({ device, isSelected, onSelect, onRemove }) {
 
   // Ensure device has all required properties
   const deviceData = { 
-    DeviceID: device.deviceID || "Unknown",
-    MAC: device.mac || "Unknown",
-    Temp: device.temp ?? 0,
-    Humidity: device.humidity ?? 0,
-    Methane: device.methane ?? 0,
-    CO2: device.cO2 ?? 0,
-    Progress: device.progress ?? 0
+    DeviceID: device.DeviceID || "Unknown",
+    MAC: device.MAC || "Unknown",
+    Temp: device.Temp ?? 0,
+    Humidity: device.Humidity ?? 0,
+    Methane: device.Methane ?? 0,
+    CO2: device.CO2 ?? 0,
+    Progress: device.Progress ?? 0
   };
 
   return (

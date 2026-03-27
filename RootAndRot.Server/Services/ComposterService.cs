@@ -45,7 +45,7 @@ namespace RootAndRot.Server.Services
             }
         }
 
-        public async Task RemoveDevice(string MAC, string Username)
+        public async Task RemoveDevice(Guid DeviceId, string Username)
         {
             var user = await _context.Users
                 .Include(u => u.Devices)
@@ -56,7 +56,7 @@ namespace RootAndRot.Server.Services
                 throw new Exception("User not found.");
             }
 
-            var device = user.Devices.FirstOrDefault(d => d.Macaddress == MAC);
+            var device = user.Devices.FirstOrDefault(d => d.DeviceId == DeviceId);
             if (device == null)
             {
                 throw new Exception("Device not found for this user.");

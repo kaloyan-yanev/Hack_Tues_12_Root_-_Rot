@@ -18,7 +18,6 @@ namespace RootAndRot.Server.Models
         {
             return new DeviceDataDTO
             {
-                DeviceID = device.DeviceId,
                 MAC = device.Macaddress,
                 Temp = device.Temperature,
                 Humidity = device.Humidity,

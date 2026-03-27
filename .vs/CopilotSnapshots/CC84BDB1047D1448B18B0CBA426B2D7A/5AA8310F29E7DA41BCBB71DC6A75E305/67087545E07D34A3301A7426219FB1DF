@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import styles from "./Container.module.css";
 
 function Container({ device, isSelected, onSelect, onRemove }) {
@@ -21,25 +21,24 @@ function Container({ device, isSelected, onSelect, onRemove }) {
   const handleRemoveClick = (e) => {
     e.stopPropagation();
     if (window.__navbarRequestRemove) {
-      window.__navbarRequestRemove(device.deviceID, onRemove);
+      window.__navbarRequestRemove(device.MAC, onRemove);
     }
   };
 
   if (!device) {
     return null;
-  }
-  console.log("Device Object:", device);
+    }
+    console.log("Raw Response Body1:", device);
 
   // Ensure device has all required properties
-  const deviceData = { 
-    DeviceID: device.deviceID || "Unknown",
-    MAC: device.mac || "Unknown",
+const deviceData = { 
+    MAC: device.mac|| "Unknown",
     Temp: device.temp ?? 0,
     Humidity: device.humidity ?? 0,
     Methane: device.methane ?? 0,
-    CO2: device.cO2 ?? 0,
+    CO2: device.cO2 ?? 0,   // C# serializes "CO2" as "cO2"
     Progress: device.progress ?? 0
-  };
+};
 
   return (
     <div
