@@ -384,9 +384,9 @@ void setupActuators() {
     Serial.println("1111------");
     delay(1000);
   
-    digitalWrite(RELAY_PUMP_HEATER_PIN, LOW);
+    digitalWrite(RELAY_PUMP_HEATER_PIN, HIGH);
     Serial.println("1111------");
-    digitalWrite(RELAY_MOTOR_PIN, LOW);
+    digitalWrite(RELAY_MOTOR_PIN, HIGH);
 }
 
 
