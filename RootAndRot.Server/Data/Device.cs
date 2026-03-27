@@ -18,6 +18,10 @@ public class Device
 
     public int CO2 { get; set; }
 
+    public bool DoesntHaveMeatOrDairy { get; set; }
+    public bool HasMeat { get; set; }
+    public bool HasDairy { get; set; }
+
     public virtual ICollection<User> Users { get; set; } = new List<User>();
     
     public virtual ICollection<DeviceData> DeviceDataSet { get; set; } = new List<DeviceData>();

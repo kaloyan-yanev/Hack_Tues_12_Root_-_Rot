@@ -13,7 +13,9 @@ namespace RootAndRot.Server.Models
         public int Methane { get; set; }
         public int CO2 { get; set; }
         public float Progress { get; set; }
-
+        public bool DoesntHaveMeatOrDairy { get; set; }
+        public bool HasMeat { get; set; }
+        public bool HasDairy { get; set; }
         public static DeviceDataDTO FromDevice(Device device)
         {
             return new DeviceDataDTO
@@ -24,6 +26,9 @@ namespace RootAndRot.Server.Models
                 Humidity = device.Humidity,
                 Methane = device.Methane,
                 CO2 = device.CO2,
+                DoesntHaveMeatOrDairy = device.DoesntHaveMeatOrDairy,
+                HasMeat = device.HasMeat,
+                HasDairy = device.HasDairy,
                 Progress = CalculateProgress(device)
             };
         }

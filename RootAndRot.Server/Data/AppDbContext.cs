@@ -19,11 +19,11 @@ public partial class AppDbContext : DbContext
     
     public virtual DbSet<DeviceData> DeviceDataSet { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySql(
             "server=localhost;database=hacktues;uid=root;pwd=admin",
             ServerVersion.Parse("10.11.16-mariadb")
-        );
+        );*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -52,6 +52,18 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.CO2)
                 .HasColumnType("int");
+
+            entity.Property(rt => rt.DoesntHaveMeatOrDairy)
+                .IsRequired()
+                .HasDefaultValue(true);
+
+            entity.Property(rt => rt.HasMeat)
+                .IsRequired()
+                .HasDefaultValue(false);
+
+            entity.Property(rt => rt.HasDairy)
+                .IsRequired()
+                .HasDefaultValue(false);
         });
         modelBuilder.Entity<User>(entity =>
         {
