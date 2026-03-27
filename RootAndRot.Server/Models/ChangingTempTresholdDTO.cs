@@ -6,7 +6,7 @@
         public bool placeholder2 { get; set; }
         public bool placeholder3 { get; set; }
 
-        public string DeviceId { get; set; } = null!;
+        public Guid DeviceId { get; set; } 
 
     }
 }

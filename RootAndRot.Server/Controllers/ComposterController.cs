@@ -20,7 +20,7 @@ namespace RootAndRot.Server.Controllers
         [HttpPost("ChangeTempThreshold")]
         public async Task<IActionResult> ChangeTempTreshold(ChangingTempTresholdDTO dto)
         {
-            Guid DeviceId = dto.DeviceId != null ? Guid.Parse(dto.DeviceId) : throw new ArgumentException("DeviceId cannot be null");
+            Guid DeviceId = dto.DeviceId;
             TempThresholdFactors factors = new TempThresholdFactors()
             {
                 placeholder1 = dto.placeholder1,
