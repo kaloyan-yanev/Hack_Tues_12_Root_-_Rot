@@ -16,6 +16,8 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<Device> Devices { get; set; }
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
+    
+    public virtual DbSet<DeviceData> DeviceDataSet { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySql(
@@ -111,7 +113,35 @@ public partial class AppDbContext : DbContext
                 .HasForeignKey(rt => rt.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
+        modelBuilder.Entity<DeviceData>(entity =>
+        {
+            entity.HasKey(dd => dd.DataId);
 
+            entity.Property(dd => dd.DataId)
+                .HasColumnType("char(36)")
+                .HasColumnName("DataID")
+                .HasDefaultValueSql("(UUID())");
+
+            entity.Property(dd => dd.DeviceId)
+                .IsRequired();
+
+            entity.Property(dd => dd.DateTime)
+                .HasColumnType("datetime")
+                .IsRequired();
+            entity.Property(dd => dd.Temperature)
+                .HasColumnType("int")
+                .IsRequired();
+            entity.Property(dd => dd.Humidity)
+                .HasColumnType("int")
+                .IsRequired();
+            entity.Property(dd => dd.CO2)
+                .HasColumnType("int")
+                .IsRequired();
+            entity.HasOne(dd => dd.Device)
+                .WithMany(d => d.DeviceDataSet)
+                .HasForeignKey(dd => dd.DeviceId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
         OnModelCreatingPartial(modelBuilder);
     }
 
