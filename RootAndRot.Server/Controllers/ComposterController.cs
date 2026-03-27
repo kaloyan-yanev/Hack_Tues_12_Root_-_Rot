@@ -54,14 +54,14 @@ namespace RootAndRot.Server.Controllers
             await _composterService.AddDevice(dto.MACAddress, userIdClaim);
             return Ok();
         }
-        public async Task<IActionResult> StirTor()
+        public async Task<IActionResult> StirTor([FromBody] Guid DeviceId)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!Guid.TryParse(userIdClaim, out var userId))
             {
                 return BadRequest("Invalid user identity");
             }
-            await _composterService.StirTor(userId);
+            await _composterService.StirTor(DeviceId);
             return Ok();
         }
     }

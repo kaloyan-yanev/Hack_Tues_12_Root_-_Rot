@@ -61,11 +61,11 @@ namespace RootAndRot.Server.Services
         }
         public async Task StirTor(Guid DeviceId)
         {
-            Device user = await _context.Devices
+            Device device = await _context.Devices
                 .FirstOrDefaultAsync(x => x.DeviceId == DeviceId);
-            if (user == null)
+            if (device == null)
             {
-                throw new Exception("Потребителят не е намерен.");
+                throw new Exception("Device not found.");
             }
             
         }
