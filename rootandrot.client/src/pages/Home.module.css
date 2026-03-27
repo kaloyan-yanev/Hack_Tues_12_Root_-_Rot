@@ -1,0 +1,48 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding-top: 80px;
+  padding: 80px 20px 40px;
+}
+
+.containerList {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.error {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #fecaca;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.empty {
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 80px 12px 40px;
+  }
+
+  .containerList {
+    max-width: 100%;
+  }
+}
