@@ -1,1 +1,2 @@
 C:\Users\adria\Desktop\School\HackTues12\Hack_Tues_12_Root_-_Rot\rootandrot.client\obj\Debug\rootandrot.client.esproj.CoreCompileInputs.cache
+C:\Users\tester\source\repos\Hack_Tues_12_Root_-_Rot\rootandrot.client\obj\Debug\rootandrot.client.esproj.CoreCompileInputs.cache
