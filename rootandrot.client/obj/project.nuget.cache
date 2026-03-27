@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "7M33m5NBUN4=",
+  "success": false,
+  "projectFilePath": "/home/caparo/Projects/Hack_Tues_12_Root_-_Rot/rootandrot.client/rootandrot.client.esproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1012",
+      "level": "Error",
+      "message": "Platform version is not present for one or more target frameworks, even though they have specified a platform: net6.0-none",
+      "projectPath": "/home/caparo/Projects/Hack_Tues_12_Root_-_Rot/rootandrot.client/rootandrot.client.esproj",
+      "filePath": "/home/caparo/Projects/Hack_Tues_12_Root_-_Rot/rootandrot.client/rootandrot.client.esproj",
+      "targetGraphs": []
+    }
+  ]
+}
