@@ -30,15 +30,15 @@ def on_message(client, userdata, msg):
         Temperature  = (data_json ["temperature"])
         Humidity = (data_json ["humidity"])
         Methane = (data_json ["methane"])
-        c02 = (data_json ["co2"])
+        co2 = (data_json ["co2"])
     except:
         print("Data not in right format")
     
-    DevicesQuery = "UPDATE Devices SET Temperature = %s, Humidity = %s, Methane = %s, C02 = %s WHERE Name = %s;"
-    values = (Temperature, Humidity, Methane, c02, Name)
+    DevicesQuery = "UPDATE Devices SET Temperature = %s, Humidity = %s, Methane = %s, CO2 = %s WHERE MACAddress = %s;"
+    values = (Temperature, Humidity, Methane, co2, Name)
     cursor.execute(DevicesQuery, values)
     '''cursor.execute(UpdateQuery, values)
-    HistoryQuery = "INSERT INTO Devices (Name, Temperature, Humidity, Methane, C02) VALUES (%s, %s, %s, %s, %s)"'''
+    HistoryQuery = "INSERT INTO Devices (Name, Temperature, Humidity, Methane, CO2) VALUES (%s, %s, %s, %s, %s)"'''
     
     connection.commit()
 
