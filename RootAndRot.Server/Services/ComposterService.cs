@@ -18,11 +18,11 @@ namespace RootAndRot.Server.Services
             _context = context;
             _engine = Python.CreateEngine();
         }
-        public async Task AddDevice(string MAC, Guid Userid)
+        public async Task AddDevice(string MAC, string Username)
         {
             var user = await _context.Users
             .Include(u => u.Devices)
-            .FirstOrDefaultAsync(x => x.UserId == Userid);
+            .FirstOrDefaultAsync(x => x.Name == Username);
 
             // 2. Намираме устройството по неговия MAC адрес
             var device = await _context.Devices
@@ -52,10 +52,10 @@ namespace RootAndRot.Server.Services
             factors.CalculateTempThreshold();
         }
 
-        public async Task<IEnumerable<Device>> GetAllDataPerProfile(Guid Userid)
+        public async Task<IEnumerable<Device>> GetAllDataPerProfile(string Username)
         {
             return await _context.Users
-             .Where(u => u.UserId == Userid)
+             .Where(u => u.Name == Username)
              .SelectMany(u => u.Devices)
              .ToListAsync();
         }

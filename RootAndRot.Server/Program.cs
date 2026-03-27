@@ -3,14 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using RootAndRot.Server.Data;
 using RootAndRot.Server.Services;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-const string JwtIssuer = "RootAndRot.Server";
+const string JwtIssuer = "RootAndRot.Server";//"RootAndRot.Server"
 const string JwtAud = "RootAndRot.Server";
-
+var jwtKey = builder.Configuration["JwtKey"];
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opts =>
@@ -23,7 +24,7 @@ builder.Services
             ValidateIssuerSigningKey = true,
             ValidIssuer = JwtIssuer,
             ValidAudience = JwtAud,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("JwtKey")),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
             ClockSkew = TimeSpan.Zero,
         };
     });

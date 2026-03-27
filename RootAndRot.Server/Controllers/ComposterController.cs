@@ -34,10 +34,10 @@ namespace RootAndRot.Server.Controllers
         public async Task<IActionResult> GetAllData()
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!Guid.TryParse(userIdClaim, out var userId))
+            if (userIdClaim == null || userIdClaim == "")
                 return BadRequest("Invalid user identity.");
 
-            var devices = (await _composterService.GetAllDataPerProfile(userId))
+            var devices = (await _composterService.GetAllDataPerProfile(userIdClaim))
                 .Select(DeviceDataDTO.FromDevice)
                 .ToList();
 
@@ -47,11 +47,11 @@ namespace RootAndRot.Server.Controllers
         public async Task<IActionResult> AddDevice([FromBody] AddingDeviceDTO dto)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if(!Guid.TryParse(userIdClaim, out var userId))
+            if(userIdClaim == null || userIdClaim == "")
             {
                 return BadRequest("Invalid user identity");
             }
-            await _composterService.AddDevice(dto.MACAddress, userId);
+            await _composterService.AddDevice(dto.MACAddress, userIdClaim);
             return Ok();
         }
         public async Task<IActionResult> StirTor()

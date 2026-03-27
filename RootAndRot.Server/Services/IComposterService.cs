@@ -5,12 +5,12 @@ namespace RootAndRot.Server.Services
 {
     public interface IComposterService
     {
-        public Task AddDevice(string MAC, Guid Userid);
+        public Task AddDevice(string MAC, string Username);
         public Task ChangeTempTreshold(Guid DeviceId, TempThresholdFactors factors);
 
        // public Task ChangeHumidityTreshold(ChangingHumidityTresholdDTO dto);
 
-        public Task<IEnumerable<Device>> GetAllDataPerProfile(Guid Userid);
+        public Task<IEnumerable<Device>> GetAllDataPerProfile(string Username);
         public Task StirTor(Guid DeviceId);
     }
 }
