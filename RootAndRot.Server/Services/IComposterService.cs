@@ -6,7 +6,7 @@ namespace RootAndRot.Server.Services
     public interface IComposterService
     {
         public Task AddDevice(string MAC, string Username);
-        public Task RemoveDevice(string MAC, string Username);
+        public Task RemoveDevice(Guid DeviceId, string Username);
         public Task ChangeTempTreshold(Guid DeviceId, TempThresholdFactors factors);
 
        // public Task ChangeHumidityTreshold(ChangingHumidityTresholdDTO dto);

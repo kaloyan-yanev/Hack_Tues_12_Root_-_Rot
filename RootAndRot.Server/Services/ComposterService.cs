@@ -45,7 +45,7 @@ namespace RootAndRot.Server.Services
             }
         }
 
-        public async Task RemoveDevice(string MAC, string Username)
+        public async Task RemoveDevice(Guid DeviceId, string Username)
         {
             var user = await _context.Users
                 .Include(u => u.Devices)
@@ -56,7 +56,7 @@ namespace RootAndRot.Server.Services
                 throw new Exception("User not found.");
             }
 
-            var device = user.Devices.FirstOrDefault(d => d.Macaddress == MAC);
+            var device = user.Devices.FirstOrDefault(d => d.DeviceId == DeviceId);
             if (device == null)
             {
                 throw new Exception("Device not found for this user.");
@@ -70,7 +70,8 @@ namespace RootAndRot.Server.Services
         {
             Device device = await _context.Devices
                 .FirstOrDefaultAsync(x => x.DeviceId == DeviceId);
-            factors.CalculateTempThreshold();
+
+            RunScriptFile("send_tresh.py", device.Macaddress, factors.CalculateTempThreshold());
         }
 
         public async Task<IEnumerable<Device>> GetAllDataPerProfile(string Username)
@@ -88,7 +89,9 @@ namespace RootAndRot.Server.Services
             {
                 throw new Exception("Device not found.");
             }
-            
+
+            RunScriptFile("send_stir.py", device.Macaddress, 1);
+
         }
         private void RunScriptFile(string fileName, string mac, object value)
         {
@@ -98,7 +101,7 @@ namespace RootAndRot.Server.Services
                 throw new FileNotFoundException($"Скриптът не е намерен: {fullPath}");
 
             // 1. Подготвяме аргументите (първият винаги е името на скрипта)
-            var argv = new List<object>{mac, value};
+            var argv = new List<object>{fileName, mac, value};
 
             // 2. Подаваме аргументите към общата Python среда
             _engine.GetSysModule().SetVariable("argv", argv);
