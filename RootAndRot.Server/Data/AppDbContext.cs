@@ -19,7 +19,7 @@ public partial class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySql(
-            "server=localhost;database=hacktues;uid=root;pwd=1234",
+            "server=localhost;database=hacktues;uid=root;pwd=admin",
             ServerVersion.Parse("10.11.16-mariadb")
         );
 

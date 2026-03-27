@@ -1,36 +1,50 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from '../components/NavBar'
 import Container from '../components/Container'
 import styles from './Home.module.css';
 
 function Home() {
+    const navigate = useNavigate();
     const [devices, setDevices] = useState([]);
     const [selectedDevice, setSelectedDevice] = useState(null);
     const [removeMode, setRemoveMode] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // Fetch all devices on component mount
+    // Check authentication on mount
     useEffect(() => {
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+            navigate("/login?returnUrl=/", { replace: true });
+            return;
+        }
         fetchDevices();
-    }, []);
+    }, [navigate]);
 
     const fetchDevices = async () => {
         try {
             setLoading(true);
             const token = localStorage.getItem("authToken");
             if (!token) {
-                setError("Not authenticated");
+                navigate("/login?returnUrl=/", { replace: true });
                 return;
             }
 
-            const resp = await fetch("/api/composter/GetAllData", {
+            const resp = await fetch("https://localhost:61954/api/composter/GetAllData", {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 }
             });
+
+            if (resp.status === 401) {
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("refreshToken");
+                navigate("/login?returnUrl=/", { replace: true });
+                return;
+            }
 
             if (!resp.ok) {
                 throw new Error("Failed to fetch devices");
@@ -55,7 +69,7 @@ function Home() {
                 return;
             }
 
-            const resp = await fetch("/api/composter/AddDevice", {
+            const resp = await fetch("https://localhost:61954/api/composter/AddDevice", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -64,8 +78,16 @@ function Home() {
                 body: JSON.stringify({ MACAddress: macAddress })
             });
 
+            if (resp.status === 401) {
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("refreshToken");
+                navigate("/login?returnUrl=/", { replace: true });
+                return;
+            }
+
             if (!resp.ok) {
-                throw new Error("Failed to add device");
+                const errorData = await resp.json().catch(() => ({}));
+                throw new Error(errorData.message || "Failed to add device");
             }
 
             // Refresh the device list
@@ -84,8 +106,7 @@ function Home() {
                 return;
             }
 
-            // Call API to remove device (you may need to add this endpoint to the backend)
-            const resp = await fetch(`/api/composter/RemoveDevice?macAddress=${macAddress}`, {
+            const resp = await fetch(`https://localhost:61954/api/composter/RemoveDevice?macAddress=${macAddress}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -93,11 +114,17 @@ function Home() {
                 }
             });
 
+            if (resp.status === 401) {
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("refreshToken");
+                navigate("/login?returnUrl=/", { replace: true });
+                return;
+            }
+
             if (!resp.ok) {
                 throw new Error("Failed to remove device");
             }
 
-            // Refresh the device list and clear selection
             setSelectedDevice(null);
             await fetchDevices();
         } catch (err) {
@@ -123,7 +150,6 @@ function Home() {
         }
     };
 
-    // Close selection when clicking outside containers or turning off remove mode
     const handlePageClick = () => {
         setSelectedDevice(null);
     };

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 
 // ─── Confirmation Popup ───────────────────────────────────────────────────────
@@ -22,7 +23,8 @@ function ConfirmPopup({ onConfirm, onCancel }) {
 
 // ─── NavBar ───────────────────────────────────────────────────────────────────
 export function NavBar({ onAddComposter, onRemoveMode }) {
-    const [addState, setAddState] = useState("idle"); // "idle" | "input" | "success"
+    const navigate = useNavigate();
+    const [addState, setAddState] = useState("idle");
     const [inputValue, setInputValue] = useState("");
     const [removeActive, setRemoveActive] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
@@ -61,8 +63,6 @@ export function NavBar({ onAddComposter, onRemoveMode }) {
             const id = inputValue.trim();
             if (!id) return;
 
-            // 🔌 Wire up your ASP.NET endpoint here:
-            // fetch('/api/composters/add', { method: 'POST', body: JSON.stringify({ id }) })
             if (onAddComposter) onAddComposter(id);
 
             setInputValue("");
@@ -101,6 +101,13 @@ export function NavBar({ onAddComposter, onRemoveMode }) {
         setPendingTarget(null);
     };
 
+    // ── Logout ──────────────────────────────────────────────────────────────────
+    const handleLogout = () => {
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("refreshToken");
+        navigate("/login", { replace: true });
+    };
+
     // ── Render ──────────────────────────────────────────────────────────────────
     return (
         <>
@@ -113,7 +120,7 @@ export function NavBar({ onAddComposter, onRemoveMode }) {
                             ref={inputRef}
                             className={styles.addInput}
                             type="text"
-                            placeholder="Enter ID…"
+                            placeholder="Enter MAC Address…"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleInputKeyDown}
@@ -145,10 +152,10 @@ export function NavBar({ onAddComposter, onRemoveMode }) {
                     </button>
                 </div>
 
-                <a href="/login" className={styles.loginBtn}>
-                    Login
+                <button className={styles.loginBtn} onClick={handleLogout}>
+                    Logout
                     <span style={{ fontSize: 13, opacity: 0.7 }}>→</span>
-                </a>
+                </button>
             </nav>
 
             {showPopup && (

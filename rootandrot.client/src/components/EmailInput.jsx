@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Input.module.css";
 
-const EmailIn = ({ value, onChange, onEnter }) => {
+const UsernameInput = ({ value, onChange, onEnter }) => {
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
             onEnter(value);
@@ -19,14 +19,17 @@ const EmailIn = ({ value, onChange, onEnter }) => {
                 autoComplete="off"
             />
             <label>
-                <span style={{ transitionDelay: "0ms" }}>E</span>
-                <span style={{ transitionDelay: "50ms" }}>m</span>
-                <span style={{ transitionDelay: "100ms" }}>a</span>
-                <span style={{ transitionDelay: "150ms" }}>i</span>
-                <span style={{ transitionDelay: "200ms" }}>l</span>
+                <span style={{ transitionDelay: "0ms" }}>U</span>
+                <span style={{ transitionDelay: "50ms" }}>s</span>
+                <span style={{ transitionDelay: "100ms" }}>e</span>
+                <span style={{ transitionDelay: "150ms" }}>r</span>
+                <span style={{ transitionDelay: "200ms" }}>n</span>
+                <span style={{ transitionDelay: "250ms" }}>a</span>
+                <span style={{ transitionDelay: "300ms" }}>m</span>
+                <span style={{ transitionDelay: "350ms" }}>e</span>
             </label>
         </div>
     );
 };
 
-export default EmailIn;
+export default UsernameInput;

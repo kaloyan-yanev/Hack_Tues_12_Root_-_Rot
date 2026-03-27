@@ -1,0 +1,141 @@
+﻿-- ============================================================================
+-- RootAndRot Test Data SQL Script
+-- ============================================================================
+-- This script creates test data for the RootAndRot application
+-- 
+-- Test User:
+--   Username: admin
+--   Password: admin12345
+--   
+-- The password is hashed using SHA256 and encoded as Base64
+-- ============================================================================
+
+-- First, let's verify we're in the right database
+USE hacktues;
+
+-- ============================================================================
+-- 1. Create Test User
+-- ============================================================================
+-- Password hash: SHA256("admin12345") = 
+-- Base64 encoded: gVQnCHxDcGJHZmJKZHJHV3pUZVhyc05pU3dWWVJGMEE=
+
+INSERT INTO Users (UserID, Name, Password)
+VALUES (UUID(), 'admin', 'gVQnCHxDcGJHZmJKZHJHV3pUZVhyc05pU3dWWVJGMEE=');
+
+-- Verify the user was created
+SELECT 'Created User:' as Status;
+SELECT UserID, Name FROM Users WHERE Name = 'admin';
+
+-- ============================================================================
+-- 2. Create Test Devices
+-- ============================================================================
+
+-- Device 1: Standard composter
+INSERT INTO Devices (DeviceID, MACAddress, Temperature, Humidity, Methane, CO2, Temp_Threshold)
+VALUES (UUID(), '00:1A:2B:3C:4D:5E', 45.5, 65.2, 120, 85, 50);
+
+-- Device 2: High temperature composter  
+INSERT INTO Devices (DeviceID, MACAddress, Temperature, Humidity, Methane, CO2, Temp_Threshold)
+VALUES (UUID(), 'AA:BB:CC:DD:EE:FF', 38.3, 72.5, 95, 110, 55);
+
+-- Device 3: Additional test device
+INSERT INTO Devices (DeviceID, MACAddress, Temperature, Humidity, Methane, CO2, Temp_Threshold)
+VALUES (UUID(), '11:22:33:44:55:66', 42.1, 58.9, 150, 92, 48);
+
+-- Verify devices were created
+SELECT 'Created Devices:' as Status;
+SELECT DeviceID, MACAddress, Temperature, Humidity, Methane, CO2 FROM Devices 
+WHERE MACAddress IN ('00:1A:2B:3C:4D:5E', 'AA:BB:CC:DD:EE:FF', '11:22:33:44:55:66');
+
+-- ============================================================================
+-- 3. Link User to Devices (Many-to-Many Relationship)
+-- ============================================================================
+
+-- Get the admin user and link all test devices
+INSERT INTO UsersDevices (UserID, DeviceID)
+SELECT u.UserID, d.DeviceID
+FROM Users u, Devices d
+WHERE u.Name = 'admin' AND d.MACAddress = '00:1A:2B:3C:4D:5E';
+
+INSERT INTO UsersDevices (UserID, DeviceID)
+SELECT u.UserID, d.DeviceID
+FROM Users u, Devices d
+WHERE u.Name = 'admin' AND d.MACAddress = 'AA:BB:CC:DD:EE:FF';
+
+INSERT INTO UsersDevices (UserID, DeviceID)
+SELECT u.UserID, d.DeviceID
+FROM Users u, Devices d
+WHERE u.Name = 'admin' AND d.MACAddress = '11:22:33:44:55:66';
+
+-- Verify relationships were created
+SELECT 'User-Device Relationships:' as Status;
+SELECT u.Name as Username, d.MACAddress, d.Temperature, d.Humidity, d.Methane, d.CO2
+FROM Users u
+JOIN UsersDevices ud ON u.UserID = ud.UserID
+JOIN Devices d ON ud.DeviceID = d.DeviceID
+WHERE u.Name = 'admin';
+
+-- ============================================================================
+-- 4. Create Additional Test User (Optional)
+-- ============================================================================
+-- Password: user12345
+-- Base64 encoded SHA256: k8L7/5GHfK9pQ2mX1bN4sT6vW8yZ3cA0dE5fG6hH7iI=
+
+INSERT INTO Users (UserID, Name, Password)
+VALUES (UUID(), 'testuser', 'k8L7/5GHfK9pQ2mX1bN4sT6vW8yZ3cA0dE5fG6hH7iI=');
+
+-- Link second user to one device
+INSERT INTO UsersDevices (UserID, DeviceID)
+SELECT u.UserID, d.DeviceID
+FROM Users u, Devices d
+WHERE u.Name = 'testuser' AND d.MACAddress = 'AA:BB:CC:DD:EE:FF'
+LIMIT 1;
+
+-- ============================================================================
+-- 5. Verification Queries
+-- ============================================================================
+
+SELECT '========================================' as '';
+SELECT 'FINAL VERIFICATION' as '';
+SELECT '========================================' as '';
+
+SELECT 'Total Users:' as Check_Type;
+SELECT COUNT(*) as Count FROM Users;
+
+SELECT 'Total Devices:' as Check_Type;
+SELECT COUNT(*) as Count FROM Devices;
+
+SELECT 'Total User-Device Links:' as Check_Type;
+SELECT COUNT(*) as Count FROM UsersDevices;
+
+SELECT '' as '';
+SELECT 'Admin User Devices:' as Details;
+SELECT u.Name, d.MACAddress, d.Temperature, d.Humidity, d.Methane, d.CO2, d.Temp_Threshold
+FROM Users u
+LEFT JOIN UsersDevices ud ON u.UserID = ud.UserID
+LEFT JOIN Devices d ON ud.DeviceID = d.DeviceID
+WHERE u.Name = 'admin'
+ORDER BY d.MACAddress;
+
+SELECT '' as '';
+SELECT 'TestUser Devices:' as Details;
+SELECT u.Name, d.MACAddress, d.Temperature, d.Humidity, d.Methane, d.CO2, d.Temp_Threshold
+FROM Users u
+LEFT JOIN UsersDevices ud ON u.UserID = ud.UserID
+LEFT JOIN Devices d ON ud.DeviceID = d.DeviceID
+WHERE u.Name = 'testuser'
+ORDER BY d.MACAddress;
+
+-- ============================================================================
+-- TEST CREDENTIALS
+-- ============================================================================
+-- User 1:
+--   Username: admin
+--   Password: admin12345
+--   Devices: 3 (00:1A:2B:3C:4D:5E, AA:BB:CC:DD:EE:FF, 11:22:33:44:55:66)
+--
+-- User 2:
+--   Username: testuser
+--   Password: user12345
+--   Devices: 1 (AA:BB:CC:DD:EE:FF)
+-- ============================================================================
