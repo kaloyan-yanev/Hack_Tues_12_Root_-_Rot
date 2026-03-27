@@ -26,11 +26,11 @@ def on_message(client, userdata, msg):
     payload = msg.payload.decode()
     data_json = json.loads(payload)
     try:
-        Name  = (data_json ["Name"])
-        Temperature  = (data_json ["Temperature"])
-        Humidity = (data_json ["Humidity"])
-        Methane = (data_json ["Methane"])
-        c02 = (data_json ["C02"])
+        Name  = (data_json ["compost_ID"])
+        Temperature  = (data_json ["temperature"])
+        Humidity = (data_json ["humidity"])
+        Methane = (data_json ["methane"])
+        c02 = (data_json ["co2"])
     except:
         print("Data not in right format")
     
