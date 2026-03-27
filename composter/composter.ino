@@ -3,387 +3,193 @@
 #include <PubSubClient.h>
 #include <LittleFS.h>
 #include <ArduinoJson.h>
-#include <OneWire.h>
-#include <DallasTemperature.h>
-
-// =======================================================
-// 1. PIN DEFINITIONS
-// =======================================================
-
-#define ONE_WIRE_BUS 2
-
-#define METHANE_PIN 34
-#define CO2_PIN     35
-#define HUM_PIN     32
-
-#define FLOW_PIN    27
-
-// Actuators
-#define PUMP_PIN 25
-#define RELAY_PUMP_HEATER 26
-#define RELAY_MOTOR 27
-
-
-// =======================================================
-// 2. CONSTANTS
-// =======================================================
-
-const unsigned long interval = 15UL * 60UL * 1000UL; // 15 minutes is the time interval by which information is sent to the server
-
-#define ADC_REF_VOLTAGE 3.3
-#define ADC_RESOLUTION 4095.0
-
-#define RL 10.0
-
-float FLOW_K = 7.5;
-
-float R0_MQ2 = 10.0;
-float R0_MQ135 = 10.0;
-
-#define MQ2_A 574.25
-#define MQ2_B -2.222
-
-#define MQ135_A 110.47
-#define MQ135_B -2.862
-
-
-// Pump PWM limits
-#define PUMP_PWM_CHANNEL 0
-#define PUMP_PWM_FREQ 5000
-#define PUMP_PWM_RESOLUTION 8
-#define PUMP_MAX_DUTY 153   // 60% of 255
-
-
-// =======================================================
-// 3. HARDWARE OBJECTS
-// =======================================================
-
-OneWire oneWire(ONE_WIRE_BUS);
-DallasTemperature sensors(&oneWire);
-
-DeviceAddress tempSensor1, tempSensor2;
-
-volatile int pulseCount = 0;
-
-
-// =======================================================
-// 4. FLOW INTERRUPT
-// =======================================================
-
-void IRAM_ATTR flowPulse() {
-    pulseCount++;
-}
-
-
-// =======================================================
-// 5. LOW LEVEL HELPERS
-// =======================================================
-
-float readVoltage(int pin) {
-    int raw = analogRead(pin);
-    return (raw / ADC_RESOLUTION) * ADC_REF_VOLTAGE;
-}
-
-float getRs(float voltage) {
-    if (voltage <= 0.01) return 9999;
-    return ((ADC_REF_VOLTAGE - voltage) / voltage) * RL;
-}
-
-float getPPM(float rs, float r0, float A, float B) {
-    float ratio = rs / r0;
-    return A * pow(ratio, B);
-}
-
-
-// =======================================================
-// 6. FLOW SENSOR
-// =======================================================
-
-float getFlowRate() {
-
-    static unsigned long lastTime = 0;
-    static int lastPulseCount = 0;
-
-    unsigned long now = millis();
-
-    if (now - lastTime >= 1000) {
-
-        noInterrupts();
-        int pulses = pulseCount;
-        pulseCount = 0;
-        interrupts();
-
-        lastPulseCount = pulses;
-        lastTime = now;
-    }
-
-    return (float)lastPulseCount / FLOW_K;
-}
-
-
-// =======================================================
-// SENSOR API (DUMMY VERSION - RANDOMIZED)
-// =======================================================
-
-float randomFloat(float minVal, float maxVal) {
-    return minVal + (float)random(0, 1000) / 1000.0 * (maxVal - minVal);
-}
-
-float getTemp1() {
-    return randomFloat(22.0, 28.0);
-}
-
-float getTemp2() {
-    return randomFloat(22.5, 29.0);
-}
-
-float getMethane() {
-    return randomFloat(150.0, 600.0);
-}
-
-float getCO2() {
-    return randomFloat(400.0, 1200.0);
-}
-
-float getHumidity() {
-    return randomFloat(30.0, 80.0);
-}
-
-
-// =======================================================
-// 8. ACTUATORS (PUMP + RELAYS)
-// =======================================================
-
-void setupPump() {
-    ledcSetup(PUMP_PWM_CHANNEL, PUMP_PWM_FREQ, PUMP_PWM_RESOLUTION);
-    ledcAttachPin(PUMP_PIN, PUMP_PWM_CHANNEL);
-}
-
-void setPump(int dutyPercent) {
-
-    if (dutyPercent < 0) dutyPercent = 0;
-    if (dutyPercent > 100) dutyPercent = 100;
-
-    int pwmValue = map(dutyPercent, 0, 100, 0, 255);
-
-    if (pwmValue > PUMP_MAX_DUTY) {
-        pwmValue = PUMP_MAX_DUTY;
-    }
-
-    ledcWrite(PUMP_PWM_CHANNEL, pwmValue);
-}
-
-void stopPump() {
-    ledcWrite(PUMP_PWM_CHANNEL, 0);
-}
-
-void setupRelays() {
-    pinMode(RELAY_PUMP_HEATER, OUTPUT);
-    pinMode(RELAY_MOTOR, OUTPUT);
-
-    digitalWrite(RELAY_PUMP_HEATER, LOW);
-    digitalWrite(RELAY_MOTOR, LOW);
-}
-
-void setRelay(int relayPin, int state) {
-    digitalWrite(relayPin, state ? HIGH : LOW);
-}
-
-
-// =======================================================
-// 9. WIFI + MQTT + CONFIG (UNCHANGED LOGIC)
-// =======================================================
 
 #define CONFIG_FILE "/config.json"
 
-String module_name = "default_name";
+String module_name = "imeto se zadava vednuj pri proizvodstvo";
 
 const char* mqtt_server = "10.1.85.205";
 const int mqtt_port = 1883;
 
+// MQTT topics
 String pubTopic = "machines/sensors/" + module_name;
 String subTopic = "machines/control/temp_tresh/" + module_name;
 
+// ===== CONFIG STRUCT =====
 struct Config {
-    String ssid;
-    String password;
-    String ip;
-    String gateway;
-    String subnet;
+  String ssid;
+  String password;
+  String ip;
+  String gateway;
+  String subnet;
 };
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-
-// CONFIG LOAD
+// ===== LOAD CONFIG =====
 bool loadConfig(Config &config) {
-    if (!LittleFS.exists(CONFIG_FILE)) return false;
+  if (!LittleFS.exists(CONFIG_FILE)) return false;
 
-    File file = LittleFS.open(CONFIG_FILE, "r");
-    if (!file) return false;
+  File file = LittleFS.open(CONFIG_FILE, "r");
+  if (!file) return false;
 
-    StaticJsonDocument<256> doc;
-    if (deserializeJson(doc, file)) {
-        file.close();
-        return false;
-    }
+  StaticJsonDocument<256> doc;
+  if (deserializeJson(doc, file)) {
     file.close();
+    return false;
+  }
+  file.close();
 
-    config.ssid = doc["ssid"].as<String>();
-    config.password = doc["password"].as<String>();
-    config.ip = doc["ip"].as<String>();
-    config.gateway = doc["gateway"].as<String>();
-    config.subnet = doc["subnet"].as<String>();
+  config.ssid     = doc["ssid"].as<String>();
+  config.password = doc["password"].as<String>();
+  config.ip       = doc["ip"].as<String>();
+  config.gateway  = doc["gateway"].as<String>();
+  config.subnet   = doc["subnet"].as<String>();
 
-    return true;
+  return true;
 }
 
-
-// CONFIG SAVE
+// ===== SAVE CONFIG =====
 bool saveConfig(const Config &config) {
-    StaticJsonDocument<256> doc;
+  StaticJsonDocument<256> doc;
 
-    doc["ssid"] = config.ssid;
-    doc["password"] = config.password;
-    doc["ip"] = config.ip;
-    doc["gateway"] = config.gateway;
-    doc["subnet"] = config.subnet;
+  doc["ssid"]     = config.ssid;
+  doc["password"] = config.password;
+  doc["ip"]       = config.ip;
+  doc["gateway"]  = config.gateway;
+  doc["subnet"]   = config.subnet;
 
-    File file = LittleFS.open(CONFIG_FILE, "w");
-    if (!file) return false;
+  File file = LittleFS.open(CONFIG_FILE, "w");
+  if (!file) return false;
 
-    serializeJson(doc, file);
-    file.close();
-    return true;
+  serializeJson(doc, file);
+  file.close();
+  return true;
 }
 
-
-// MQTT CALLBACK
+// ===== MQTT CALLBACK (FIXED) =====
 void callback(char* topic, byte* payload, unsigned int length) {
 
-    String message;
+  /*String message = "";
 
-    for (int i = 0; i < length; i++) {
-        message += (char)payload[i];
-    }
+  for (int i = 0; i < length; i++) {
+    message += (char)payload[i];
+  }*/
+  Serial.println(topic);
+  String message = "";
 
-    float value = message.toFloat();
+  for (int i = 0; i < length; i++) {
+    message += (char)payload[i];
+  }
+
+  float temp = message.toFloat();
+
+  Serial.println(temp);
 }
 
-
-// MQTT RECONNECT
+// ===== MQTT RECONNECT (SAFE) =====
 void reconnect() {
 
-    while (!client.connected()) {
+  while (!client.connected()) {
 
-        if (client.connect("ESP32Client")) {
-            client.subscribe(subTopic.c_str());
-        } else {
-            delay(2000);
-        }
+    Serial.print("Connecting to MQTT...");
+
+    if (client.connect("ESP32TestClient")) {
+      Serial.println("connected");
+      client.subscribe(subTopic.c_str());
+      Serial.println("Subscribed to LED topic");
+    } else {
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println(" retry in 2 seconds");
+
+      delay(2000);
     }
+  }
 }
 
-
-// =======================================================
-// 10. SETUP
-// =======================================================
-
+// ===== SETUP =====
 void setup() {
+  Serial.begin(115200);
+  delay(1000);
 
-    Serial.begin(115200);
+  // ===== LittleFS =====
+  if (!LittleFS.begin(true)) {
+    Serial.println("LittleFS mount failed");
+    return;
+  }
 
-    if (!LittleFS.begin(true)) return;
+  Config config;
+  bool hasConfig = loadConfig(config);
 
-    Config config;
-    bool hasConfig = loadConfig(config);
+  WiFiManager wm;
+  wm.setTimeout(180);
 
-    WiFiManager wm;
-    wm.setTimeout(180);
+  // Custom WiFiManager fields
+  WiFiManagerParameter custom_ip("ip", "Static IP", config.ip.c_str(), 16);
+  WiFiManagerParameter custom_gw("gw", "Gateway", config.gateway.c_str(), 16);
+  WiFiManagerParameter custom_sn("sn", "Subnet", config.subnet.c_str(), 16);
 
-    WiFiManagerParameter custom_ip("ip", "Static IP", config.ip.c_str(), 16);
-    WiFiManagerParameter custom_gw("gw", "Gateway", config.gateway.c_str(), 16);
-    WiFiManagerParameter custom_sn("sn", "Subnet", config.subnet.c_str(), 16);
+  wm.addParameter(&custom_ip);
+  wm.addParameter(&custom_gw);
+  wm.addParameter(&custom_sn);
 
-    wm.addParameter(&custom_ip);
-    wm.addParameter(&custom_gw);
-    wm.addParameter(&custom_sn);
+  // Apply static IP if exists
+  if (hasConfig && config.ip != "") {
+    IPAddress ipAddr, gwAddr, snAddr;
 
-    if (hasConfig && config.ip != "") {
+    if (ipAddr.fromString(config.ip) &&
+        gwAddr.fromString(config.gateway) &&
+        snAddr.fromString(config.subnet)) {
 
-        IPAddress ipAddr, gwAddr, snAddr;
-
-        if (ipAddr.fromString(config.ip) &&
-            gwAddr.fromString(config.gateway) &&
-            snAddr.fromString(config.subnet)) {
-
-            wm.setSTAStaticIPConfig(ipAddr, gwAddr, snAddr);
-        }
+      Serial.println("Using saved static IP...");
+      wm.setSTAStaticIPConfig(ipAddr, gwAddr, snAddr);
     }
+  }
 
-    if (!wm.autoConnect("ESP32-AP")) {
-        ESP.restart();
-    }
+  // Connect WiFi
+  if (!wm.autoConnect("ESP32-AP")) {
+    Serial.println("WiFi failed");
+    ESP.restart();
+  }
 
-    config.ssid = WiFi.SSID();
-    config.password = WiFi.psk();
-    config.ip = custom_ip.getValue();
-    config.gateway = custom_gw.getValue();
-    config.subnet = custom_sn.getValue();
+  Serial.println("WiFi connected");
+  Serial.println(WiFi.localIP());
 
-    saveConfig(config);
+  // Save config
+  config.ssid     = WiFi.SSID();
+  config.password = WiFi.psk(); // WiFi.psk() unreliable on ESP32
+  config.ip       = custom_ip.getValue();
+  config.gateway  = custom_gw.getValue();
+  config.subnet   = custom_sn.getValue();
 
-    client.setServer(mqtt_server, mqtt_port);
-    client.setCallback(callback);
+  saveConfig(config);
 
-    sensors.begin();
-
-    sensors.getAddress(tempSensor1, 0);
-    sensors.getAddress(tempSensor2, 1);
-
-    analogSetAttenuation(ADC_11db);
-
-    pinMode(FLOW_PIN, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(FLOW_PIN), flowPulse, RISING);
-
-    setupPump();
-    setupRelays();
+  // MQTT setup
+  client.setServer(mqtt_server, mqtt_port);
+  client.setCallback(callback);
 }
 
-
-// =======================================================
-// 11. LOOP
-// =======================================================
-
+// ===== LOOP =====
 void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
 
-    if (!client.connected()) {
-        reconnect();
-    }
-    client.loop();
+  client.loop();
 
-    static unsigned long lastSend = 0;
 
-    if (millis() - lastSend >= interval) {
-        lastSend = millis();
+  static unsigned long lastMsg = 0;
 
-        StaticJsonDocument<512> doc;
+  if (millis() - lastMsg > 10000) {
+    lastMsg = millis();
 
-        doc["id"] = module_name;
+    String msg = "Hello from " + module_name;
 
-        doc["temp1"] = getTemp1();
-        doc["temp2"] = getTemp2();
+    Serial.print("Publishing: ");
+    Serial.println(msg);
 
-        doc["methane"] = getMethane();
-        doc["co2"] = getCO2();
-        doc["humidity"] = getHumidity();
-
-        doc["flow"] = getFlowRate();
-
-        char buffer[512];
-        serializeJson(doc, buffer);
-
-        client.publish(pubTopic.c_str(), buffer);
-    }
-}s
+    client.publish(pubTopic.c_str(), msg.c_str());
+  }
+}
