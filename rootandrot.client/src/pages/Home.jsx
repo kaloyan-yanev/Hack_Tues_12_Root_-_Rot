@@ -74,6 +74,31 @@ function Home() {
             console.log("Parsed Device Data:", data);
             setDevices(data);
             setError("");
+
+            // Check for high methane levels and trigger StirTor if needed
+            for (const device of data) {
+                if (device.methane > 500) {
+                    console.log(`⚠️ High methane detected (${device.methane} PPM) in device ${device.mac}. Triggering StirTor...`);
+                    try {
+                        const stirResp = await fetch("https://localhost:61954/api/composter/StirTor", {
+                            method: "POST",
+                            headers: {
+                                "Authorization": `Bearer ${token}`,
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({ DeviceId: device.deviceId })
+                        });
+
+                        if (stirResp.ok) {
+                            console.log(`✓ StirTor triggered successfully for device ${device.mac}`);
+                        } else {
+                            console.error(`Failed to trigger StirTor for device ${device.mac}:`, stirResp.status);
+                        }
+                    } catch (stirErr) {
+                        console.error("Error triggering StirTor:", stirErr);
+                    }
+                }
+            }
         } catch (err) {
             console.error("Full Error Object:", err);
             setError(err.message || "Error loading devices");
@@ -190,10 +215,10 @@ function Home() {
                 ) : (
                     devices.map((device) => (
                         <Container
-                            key={device.MAC}
+                            key={device.mac}
                             device={device}
-                            isSelected={selectedDevice === device.MAC}
-                            onSelect={() => handleContainerSelect(device.MAC)}
+                            isSelected={selectedDevice === device.mac}
+                            onSelect={() => handleContainerSelect(device.mac)}
                             onRemove={handleContainerRemove}
                         />
                     ))

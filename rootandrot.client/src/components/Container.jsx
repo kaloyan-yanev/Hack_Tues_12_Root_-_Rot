@@ -1,17 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Container.module.css";
 
 function Container({ device, isSelected, onSelect, onRemove }) {
     const [selectedThresholds, setSelectedThresholds] = useState(new Set());
 
-    const thresholdEmojis = ["🥗", "🥛", "🥩"]; // change these to whatever you like
+    const thresholdEmojis = ["🥗", "🥛", "🥩"]; // Vegetables, Milk, Meat
+
+    // Load saved threshold state from device when it changes
+    useEffect(() => {
+        if (!device) return;
+
+        const newSet = new Set();
+
+        // Convert saved boolean values back to indices
+        const onlyVegetables = device.doesntHaveMeatOrDairy;
+
+        // If only vegetables (no meat/dairy)
+        if (onlyVegetables) {
+            newSet.add(0); // Vegetables
+        } else {
+            // Check individual selections
+            if (device.hasMeat) {
+                newSet.add(2); // Meat
+            }
+            if (device.hasDairy) {
+                newSet.add(1); // Dairy/Milk
+            }
+        }
+
+        setSelectedThresholds(newSet);
+    }, [device?.deviceId, device?.doesntHaveMeatOrDairy, device?.hasMeat, device?.hasDairy]); // Re-run when device data changes
 
     const handleContainerClick = (e) => {
         e.stopPropagation();
         onSelect();
     };
 
-    const handleThresholdChange = (e, index) => {
+    const handleThresholdChange = async (e, index) => {
         e.stopPropagation();
         const newSet = new Set(selectedThresholds);
         if (newSet.has(index)) {
@@ -20,6 +45,34 @@ function Container({ device, isSelected, onSelect, onRemove }) {
             newSet.add(index);
         }
         setSelectedThresholds(newSet);
+
+        // Send changes to backend
+        const hasVegetables = newSet.has(0);
+        const hasMilk = newSet.has(1);
+        const hasMeat = newSet.has(2);
+
+        try {
+            const token = localStorage.getItem("authToken");
+            const resp = await fetch("https://localhost:61954/api/composter/ChangeTempThreshold", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    DeviceId: device.deviceId,
+                    HasVegetables: hasVegetables,
+                    HasMeat: hasMeat,
+                    HasDairy: hasMilk
+                })
+            });
+
+            if (!resp.ok) {
+                console.error("Failed to update threshold:", resp.status);
+            }
+        } catch (err) {
+            console.error("Error updating threshold:", err);
+        }
     };
 
     const getProgressBarColor = (progress) => {
@@ -30,20 +83,24 @@ function Container({ device, isSelected, onSelect, onRemove }) {
     const handleRemoveClick = (e) => {
         e.stopPropagation();
         if (window.__navbarRequestRemove) {
-            window.__navbarRequestRemove(device.DeviceID, onRemove);
+            window.__navbarRequestRemove(device.deviceId, onRemove);
         }
     };
 
     if (!device) return null;
 
+    // Use camelCase property names (JSON serializer converts PascalCase to camelCase)
     const deviceData = {
-        DeviceID: device.deviceID || "Unknown",
-        MAC: device.mac || "Unknown",
-        Temp: device.temp ?? 0,
-        Humidity: device.humidity ?? 0,
-        Methane: device.methane ?? 0,
-        CO2: device.cO2 ?? 0,
-        Progress: device.progress ?? 0
+        deviceId: device.deviceId || "Unknown",
+        mac: device.mac || "Unknown",
+        temp: device.temp ?? 0,
+        humidity: device.humidity ?? 0,
+        methane: device.methane ?? 0,
+        co2: device.co2 ?? 0,
+        progress: device.progress ?? 0,
+        doesntHaveMeatOrDairy: device.doesntHaveMeatOrDairy ?? false,
+        hasMeat: device.hasMeat ?? false,
+        hasDairy: device.hasDairy ?? false
     };
 
     return (
@@ -54,11 +111,11 @@ function Container({ device, isSelected, onSelect, onRemove }) {
             <div className={styles.header}>
                 <div className={styles.id}>
                     <span className={styles.label}>ID:</span>
-                    <span className={styles.value}>{deviceData.MAC}</span>
+                    <span className={styles.value}>{deviceData.mac}</span>
                 </div>
                 {isSelected && (
                     <button className={styles.removeBtn} onClick={handleRemoveClick} title="Remove this composter">
-                        ?
+                        ✕
                     </button>
                 )}
             </div>
@@ -87,33 +144,33 @@ function Container({ device, isSelected, onSelect, onRemove }) {
                 <div className={styles.metricsGrid}>
                     <div className={styles.metric}>
                         <span className={styles.metricLabel}>Methane:</span>
-                        <span className={styles.metricValue}>{deviceData.Methane}%</span>
+                        <span className={styles.metricValue}>{deviceData.methane} PPM</span>
                     </div>
                     <div className={styles.metric}>
-                        <span className={styles.metricLabel}>CO2:</span>
-                        <span className={styles.metricValue}>{deviceData.CO2}%</span>
+                        <span className={styles.metricLabel}>CO₂:</span>
+                        <span className={styles.metricValue}>{deviceData.co2} PPM</span>
                     </div>
                     <div className={styles.metric}>
                         <span className={styles.metricLabel}>Humidity:</span>
-                        <span className={styles.metricValue}>{deviceData.Humidity.toFixed(1)}%</span>
+                        <span className={styles.metricValue}>{deviceData.humidity.toFixed(1)}%</span>
                     </div>
                     <div className={styles.metric}>
                         <span className={styles.metricLabel}>Temperature:</span>
-                        <span className={styles.metricValue}>{deviceData.Temp.toFixed(1)}°C</span>
+                        <span className={styles.metricValue}>{deviceData.temp.toFixed(1)}°C</span>
                     </div>
                 </div>
 
                 <div className={styles.progressSection}>
                     <div className={styles.progressLabel}>
                         <span>Progress</span>
-                        <span>{deviceData.Progress.toFixed(1)}%</span>
+                        <span>{deviceData.progress.toFixed(1)}%</span>
                     </div>
                     <div className={styles.progressBarContainer}>
                         <div
                             className={styles.progressBar}
                             style={{
-                                width: `${Math.min(100, Math.max(0, deviceData.Progress))}%`,
-                                backgroundColor: getProgressBarColor(deviceData.Progress),
+                                width: `${Math.min(100, Math.max(0, deviceData.progress))}%`,
+                                backgroundColor: getProgressBarColor(deviceData.progress),
                             }}
                         />
                     </div>

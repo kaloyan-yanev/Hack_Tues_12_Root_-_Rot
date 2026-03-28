@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< Updated upstream
-  "dgSpecHash": "LUrMF0rlv3Y=",
-=======
   "dgSpecHash": "tnG4xMolMQU=",
->>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.server\\RootAndRot.Server.csproj",
   "expectedPackageFiles": [
