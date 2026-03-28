@@ -17,5 +17,9 @@ broker = "localhost"
 
 client = mqtt.Client()
 client.connect(broker, 1883)
-client.publish(topic, value)
+client.loop_start()
+result = client.publish(topic, value)
+result.wait_for_publish()
+client.loop_stop()
+client.disconnect()
 

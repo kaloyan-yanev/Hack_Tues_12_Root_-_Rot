@@ -12,20 +12,14 @@ function Container({ device, isSelected, onSelect, onRemove }) {
 
         const newSet = new Set();
 
-        // Convert saved boolean values back to indices
-        const onlyVegetables = device.doesntHaveMeatOrDairy;
-
-        // If only vegetables (no meat/dairy)
-        if (onlyVegetables) {
+        if (device.doesntHaveMeatOrDairy) {
             newSet.add(0); // Vegetables
-        } else {
-            // Check individual selections
-            if (device.hasMeat) {
-                newSet.add(2); // Meat
-            }
-            if (device.hasDairy) {
-                newSet.add(1); // Dairy/Milk
-            }
+        }
+        if (device.hasDairy) {
+            newSet.add(1); // Dairy/Milk
+        }
+        if (device.hasMeat) {
+            newSet.add(2); // Meat
         }
 
         setSelectedThresholds(newSet);
