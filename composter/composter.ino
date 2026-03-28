@@ -12,7 +12,7 @@ Preferences preferences;
 #define CONFIG_FILE "/config.json"
 
 const unsigned long MINUTE = 60UL * 1000UL;
-String module_name = "default";//задава уникално име при произвеждане на самия компостер
+String module_name = "AA:BB:CC:DD:EE:FF";//задава уникално име при произвеждане на самия компостер
 uint8_t temp_treshhold; //в градуси целзий
 uint8_t hum_treshhold; //в проценти
 
@@ -314,66 +314,10 @@ bool isMethaneRising() {
     return rising_count >= (SIZE - 1) * 0.6;
 }
 
-double Kp_temp = 8.0, Ki_temp = 0.3, Kd_temp = 0.0;  // PI for temperature
-double Kp_hum = 2.5, Ki_hum = 0.2, Kd_hum = 0.4;    // PID for humidity
-
-// --- PID objects ---
-PID tempPID(&currentTemp, &heaterOutput, &tempSetpoint, Kp_temp, Ki_temp, Kd_temp, DIRECT);
-PID humPID(&currentHumidity, &pumpOutput, &humiditySetpoint, Kp_hum, Ki_hum, Kd_hum, DIRECT);
-
-// --- Timing ---
-const unsigned long TEMP_INTERVAL = 3000;     // 3 sec for temperature
-const unsigned long HUM_INTERVAL = 1000;      // 1 sec for humidity
-unsigned long lastTempUpdate = 0;
-unsigned long lastHumUpdate = 0;
-
-// --- Time-proportioned relay ---
-const unsigned long RELAY_CYCLE = 5000; // 5-second relay cycle
-unsigned long relayCycleStart = 0;
-
-void setupPID() {
-    tempPID.SetMode(AUTOMATIC);
-    tempPID.SetOutputLimits(0, 255);  // 0-255 scaled for relay time proportion
-    humPID.SetMode(AUTOMATIC);
-    humPID.SetOutputLimits(0, 255);   // 0-255 PWM for pump
-}
-
-// Call this in your main loop
-void updatePID() {
-    unsigned long now = millis();
-
-    // --- Temperature PI (slow) ---
-    if (now - lastTempUpdate >= TEMP_INTERVAL) {
-        lastTempUpdate = now;
-        currentTemp = getTemp1();  // your abstract function
-
-        tempPID.Compute();
-
-        // Time-proportioned relay
-        if (now - relayCycleStart >= RELAY_CYCLE) relayCycleStart = now;
-        unsigned long onTime = (heaterOutput / 255.0) * RELAY_CYCLE;
-
-        if (now - relayCycleStart < onTime) setPumpHeaterRelay(true);
-        else setPumpHeaterRelay(false);
-    }
-
-    // --- Humidity PID (faster) ---
-    if (now - lastHumUpdate >= HUM_INTERVAL) {
-        lastHumUpdate = now;
-        currentHumidity = getHumidity();  // your abstract function
-
-        humPID.Compute();
-
-        // Apply PWM to pump
-        setPumpSpeed((uint8_t)pumpOutput);
-    }
-}
-
 
 // =======================================================
 // 8. 🛠 SETUP
 // =======================================================
-
 
 void setupSensors() {
     Serial.println("Initializing sensors...");
