@@ -71,7 +71,7 @@ namespace RootAndRot.Server.Services
             Device device = await _context.Devices
                 .FirstOrDefaultAsync(x => x.DeviceId == DeviceId);
 
-            RunScriptFile("send_tresh.py", device.Macaddress, factors.CalculateTempThreshold());
+           await RunScriptFile("send_tresh.py", device.Macaddress, factors.CalculateTempThreshold());
         }
 
         public async Task<IEnumerable<Device>> GetAllDataPerProfile(string Username)
@@ -90,7 +90,7 @@ namespace RootAndRot.Server.Services
                 throw new Exception("Device not found.");
             }
 
-            RunScriptFile("send_stir.py", device.Macaddress, 1);
+            await RunScriptFile("send_stir.py", device.Macaddress, 1);
 
         }
         private void RunScriptFile(string fileName, string mac, object value)

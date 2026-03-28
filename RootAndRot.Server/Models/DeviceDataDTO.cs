@@ -35,19 +35,67 @@ namespace RootAndRot.Server.Models
 
         public static float CalculateProgress(Device device)
         {
-            // Calculate progress as a percentage (0-100)
-            // This is a simple calculation based on temperature and humidity
-            // You can modify this logic based on your requirements
             if (device == null)
                 return 0f;
 
-            // Example: average of temperature and humidity normalized to 0-100
-            // Adjust these values based on your business logic
-            float tempProgress = Math.Min((device.Temperature / 100f) * 100f, 100f);
-            float humidityProgress = Math.Min((device.Humidity / 100f) * 100f, 100f);
-            float progress = (tempProgress + humidityProgress) / 2f;
+            float tempScore = GetTemperatureScore(device.Temperature);
+            float humidityScore = GetHumidityScore(device.Humidity);
+            float activityScore = GetActivityScore(device.CO2);
+            float methanePenalty = GetMethanePenalty(device.Methane);
+            float compositionPenalty = GetCompositionPenalty(device);
+
+            // Weighted score (tuned for composting reality)
+            float progress =
+                (tempScore * 0.35f) +
+                (humidityScore * 0.25f) +
+                (activityScore * 0.25f) -
+                (methanePenalty * 0.10f) -
+                (compositionPenalty * 0.05f);
 
             return Math.Max(0, Math.Min(100, progress));
         }
+        private static float GetTemperatureScore(float temp)
+        {
+            if (temp < 20) return 10;        // too cold
+            if (temp < 40) return 40;        // warming up
+            if (temp <= 65) return 100;      // 🔥 optimal thermophilic
+            if (temp <= 75) return 70;       // too hot but still active
+            return 30;                       // overheating = bad bacteria die
+        }
+        private static float GetHumidityScore(float humidity)
+        {
+            if (humidity < 30) return 20;   // too dry
+            if (humidity < 50) return 60;   // acceptable
+            if (humidity <= 70) return 100; // optimal
+            if (humidity <= 85) return 70;  // too wet
+            return 30;                      // risk of anaerobic
+        }
+        private static float GetActivityScore(int co2)
+        {
+            if (co2 < 400) return 10;     // no activity
+            if (co2 < 1000) return 50;    // moderate
+            if (co2 < 3000) return 100;   // 🔥 strong decomposition
+            return 70;                    // too much = imbalance
+        }
+        private static float GetMethanePenalty(int methane)
+        {
+            if (methane < 100) return 0;
+            if (methane < 500) return 20;
+            if (methane < 1000) return 50;
+            return 80;
+        }
+        private static float GetCompositionPenalty(Device device)
+        {
+            float penalty = 0;
+
+            if (device.HasMeat)
+                penalty += 30;
+
+            if (device.HasDairy)
+                penalty += 20;
+
+            return penalty;
+        }
+
     }
 }

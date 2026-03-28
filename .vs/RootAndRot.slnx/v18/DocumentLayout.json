@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\controllers\\compostercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\controllers\\compostercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\models\\devicedatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\models\\devicedatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\data\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\data\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\services\\composterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\services\\composterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\global.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\global.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -15,18 +35,6 @@
       "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\rootandrot.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\models\\devicedatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\models\\devicedatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\data\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\data\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,16 +43,8 @@
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\services\\composterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\services\\composterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\pythonscripts\\send_stir.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\pythonscripts\\send_stir.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.server\\controllers\\compostercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\controllers\\compostercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\tester\\source\\repos\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\components\\container.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 284,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,7 +90,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "global.json",
               "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\global.json",
               "RelativeDocumentMoniker": "RootAndRot.Server\\global.json",
@@ -103,19 +103,96 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAAAKAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T23:33:07.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Program.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T23:31:27.316Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ComposterController.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Controllers\\ComposterController.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Controllers\\ComposterController.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAvwEQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T19:53:40.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RootAndRot.Server.csproj",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\RootAndRot.Server.csproj",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj",
-              "RelativeToolTip": "RootAndRot.Server\\RootAndRot.Server.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-27T23:50:28.554Z"
+              "Title": "DeviceDataDTO.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Models\\DeviceDataDTO.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Models\\DeviceDataDTO.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Models\\DeviceDataDTO.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Models\\DeviceDataDTO.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAmwBkAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T19:55:35.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ComposterService.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\ComposterService.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Services\\ComposterService.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\ComposterService.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Services\\ComposterService.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwFkAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T19:57:09.849Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Device.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\Device.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Data\\Device.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\Device.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Data\\Device.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAA9wBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T20:39:57.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AppDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T23:35:19.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "rootandrot.client.esproj",
               "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\rootandrot.client.esproj",
               "RelativeDocumentMoniker": "rootandrot.client\\rootandrot.client.esproj",
@@ -128,38 +205,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "AppDbContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
-              "RelativeToolTip": "RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T23:35:19.368Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "RootAndRot.Server\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T23:33:07.758Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\Program.cs",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs",
-              "RelativeToolTip": "RootAndRot.Server\\Program.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T23:31:27.316Z"
+              "Title": "RootAndRot.Server.csproj",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\RootAndRot.Server.csproj",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj",
+              "RelativeToolTip": "RootAndRot.Server\\RootAndRot.Server.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-27T23:50:28.554Z"
             },
             {
               "$type": "Document",
@@ -175,30 +228,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Device.cs",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\Device.cs",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\Data\\Device.cs",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\Device.cs",
-              "RelativeToolTip": "RootAndRot.Server\\Data\\Device.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAzwBQAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T20:39:57.825Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DeviceDataDTO.cs",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Models\\DeviceDataDTO.cs",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\Models\\DeviceDataDTO.cs",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Models\\DeviceDataDTO.cs",
-              "RelativeToolTip": "RootAndRot.Server\\Models\\DeviceDataDTO.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAlwA4AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T19:55:35.199Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 11,
               "Title": "Container.jsx",
               "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\components\\Container.jsx",
@@ -211,7 +240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "send_stir.py",
               "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\send_stir.py",
               "RelativeDocumentMoniker": "RootAndRot.Server\\PythonScripts\\send_stir.py",
@@ -232,30 +261,6 @@
               "ViewState": "AgIAAFUAAAAAAAAAAAAUwGcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2026-03-27T20:15:16.498Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ComposterService.cs",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\ComposterService.cs",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\Services\\ComposterService.cs",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\ComposterService.cs",
-              "RelativeToolTip": "RootAndRot.Server\\Services\\ComposterService.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAgwEQAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T19:57:09.849Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ComposterController.cs",
-              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "RelativeDocumentMoniker": "RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "RelativeToolTip": "RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAvwEAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T19:53:40.292Z"
             },
             {
               "$type": "Document",
