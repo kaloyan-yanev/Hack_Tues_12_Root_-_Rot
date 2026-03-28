@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Container.module.css";
 
 function Container({ device, isSelected, onSelect, onRemove }) {
-    const [tempThreshold, setTempThreshold] = useState(0);
+    const [selectedThresholds, setSelectedThresholds] = useState(new Set());
 
     const thresholdEmojis = ["🥗", "🥛", "🥩"]; // change these to whatever you like
 
@@ -13,7 +13,13 @@ function Container({ device, isSelected, onSelect, onRemove }) {
 
     const handleThresholdChange = (e, index) => {
         e.stopPropagation();
-        setTempThreshold(index);
+        const newSet = new Set(selectedThresholds);
+        if (newSet.has(index)) {
+            newSet.delete(index);
+        } else {
+            newSet.add(index);
+        }
+        setSelectedThresholds(newSet);
     };
 
     const getProgressBarColor = (progress) => {
@@ -24,7 +30,7 @@ function Container({ device, isSelected, onSelect, onRemove }) {
     const handleRemoveClick = (e) => {
         e.stopPropagation();
         if (window.__navbarRequestRemove) {
-            window.__navbarRequestRemove(device.deviceID, onRemove);
+            window.__navbarRequestRemove(device.DeviceID, onRemove);
         }
     };
 
@@ -52,7 +58,7 @@ function Container({ device, isSelected, onSelect, onRemove }) {
                 </div>
                 {isSelected && (
                     <button className={styles.removeBtn} onClick={handleRemoveClick} title="Remove this composter">
-                        ✕
+                        ?
                     </button>
                 )}
             </div>
@@ -65,12 +71,17 @@ function Container({ device, isSelected, onSelect, onRemove }) {
                             <span
                                 key={index}
                                 onClick={(e) => handleThresholdChange(e, index)}
-                                className={`${styles.emojiBtn} ${tempThreshold === index ? styles.emojiSelected : ""}`}
+                                className={`${styles.emojiBtn} ${selectedThresholds.has(index) ? styles.emojiSelected : ""}`}
                             >
                                 {emoji}
                             </span>
                         ))}
                     </div>
+                    {selectedThresholds.size > 0 && (
+                        <div className={styles.selectedThresholds}>
+                            Selected: {Array.from(selectedThresholds).sort((a, b) => a - b).map(i => ["Vegetables", "Milk", "Meat"][i]).join(", ")}
+                        </div>
+                    )}
                 </div>
 
                 <div className={styles.metricsGrid}>
@@ -79,7 +90,7 @@ function Container({ device, isSelected, onSelect, onRemove }) {
                         <span className={styles.metricValue}>{deviceData.Methane}%</span>
                     </div>
                     <div className={styles.metric}>
-                        <span className={styles.metricLabel}>CO₂:</span>
+                        <span className={styles.metricLabel}>CO2:</span>
                         <span className={styles.metricValue}>{deviceData.CO2}%</span>
                     </div>
                     <div className={styles.metric}>

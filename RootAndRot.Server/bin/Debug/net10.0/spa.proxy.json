@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:58665",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\..\\rootandrot.client",
+"WorkingDirectory": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.server\\..\\rootandrot.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }
