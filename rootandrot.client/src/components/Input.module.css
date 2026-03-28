@@ -1,0 +1,45 @@
+/* From Uiverse.io by liyaxu123 */
+.formControl {
+    position: relative;
+    margin: 20px;
+    width: 300px;
+}
+
+    .formControl input {
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px #303030 solid;
+        display: block;
+        width: 300px;
+        padding: 15px 5px 5px 0;
+        font-size: 18px;
+        color: #303030;
+        margin-top:50px;
+    }
+
+        .formControl input:focus,
+        .formControl input:valid {
+            outline: 0;
+            border-bottom-color: #606060;
+        }
+
+    .formControl label {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        pointer-events: none;
+    }
+
+        .formControl label span {
+            display: inline-block;
+            font-size: 18px;
+            min-width: 5px;
+            color: #303030;
+            transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+    .formControl input:focus + label span,
+    .formControl input:valid + label span {
+        color: #606060;
+        transform: translateY(-30px);
+    }

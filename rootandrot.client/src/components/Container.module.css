@@ -1,0 +1,245 @@
+.container {
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border: 3px solid #d1d5db;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.container.selected {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.id {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.value {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-weight: 500;
+  color: #1f2937;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.removeBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #ef4444;
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.removeBtn:hover {
+  background: #fca5a5;
+  border-color: #dc2626;
+  transform: scale(1.1);
+}
+
+.removeBtn:active {
+  transform: scale(0.95);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.thresholdSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.thresholdLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.checkboxGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.emojiBtn {
+    font-size: 1.4rem;
+    padding: 0.2rem;
+    cursor: pointer;
+    filter: grayscale(100%);
+    transition: filter 0.2s, transform 0.2s;
+    user-select: none;
+}
+
+    .emojiBtn:hover {
+        filter: grayscale(50%);
+        transform: scale(1.15);
+    }
+
+.emojiSelected {
+    filter: grayscale(0%);
+    transform: scale(1.3);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  font-size: 13px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.container.selected .metric {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.metricLabel {
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metricValue {
+  font-weight: 700;
+  color: #1f2937;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.progressBarContainer {
+  width: 100%;
+  height: 24px;
+  background: linear-gradient(90deg, #fee2e2 0%, #fef3c7 50%, #dcfce7 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .container {
+    height: 280px;
+    padding: 14px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .metric {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    height: auto;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .content {
+    gap: 10px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .metric {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .thresholdSection {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "rootandrot.client\\rootandrot.client.esproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RootAndRot.Server\\RootAndRot.Server.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

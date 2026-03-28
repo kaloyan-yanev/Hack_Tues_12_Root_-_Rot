@@ -1,0 +1,46 @@
+﻿using RootAndRot.Server.Data;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace RootAndRot.Server.Models
+{
+    public class DeviceDataDTO
+    {
+        public string MAC { get; set; }
+        public float Temp { get; set; }
+        public float Humidity { get; set; }
+        public int Methane { get; set; }
+        public int CO2 { get; set; }
+        public float Progress { get; set; }
+
+        public static DeviceDataDTO FromDevice(Device device)
+        {
+            return new DeviceDataDTO
+            {
+                MAC = device.Macaddress,
+                Temp = device.Temperature,
+                Humidity = device.Humidity,
+                Methane = device.Methane,
+                CO2 = device.CO2,
+                Progress = CalculateProgress(device)
+            };
+        }
+
+        public static float CalculateProgress(Device device)
+        {
+            // Calculate progress as a percentage (0-100)
+            // This is a simple calculation based on temperature and humidity
+            // You can modify this logic based on your requirements
+            if (device == null)
+                return 0f;
+
+            // Example: average of temperature and humidity normalized to 0-100
+            // Adjust these values based on your business logic
+            float tempProgress = Math.Min((device.Temperature / 100f) * 100f, 100f);
+            float humidityProgress = Math.Min((device.Humidity / 100f) * 100f, 100f);
+            float progress = (tempProgress + humidityProgress) / 2f;
+
+            return Math.Max(0, Math.Min(100, progress));
+        }
+    }
+}

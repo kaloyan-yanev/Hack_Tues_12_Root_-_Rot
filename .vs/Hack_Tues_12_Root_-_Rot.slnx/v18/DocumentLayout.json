@@ -1,0 +1,133 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RootAndRot.Server\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\AuthenticationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RootAndRot.Server\\Services\\AuthenticationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RootAndRot.Server\\RootAndRot.Server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RootAndRot.Server\\Controllers\\ComposterController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\AuthenticationController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RootAndRot.Server\\Controllers\\AuthenticationController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\.vs\\CMakeWorkspaceSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.vs\\CMakeWorkspaceSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 284,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Program.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAiwA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T13:16:23.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthenticationService.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\AuthenticationService.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Services\\AuthenticationService.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\AuthenticationService.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Services\\AuthenticationService.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAEIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T13:15:41.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RootAndRot.Server.csproj",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\RootAndRot.Server.csproj",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj",
+              "RelativeToolTip": "RootAndRot.Server\\RootAndRot.Server.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-27T13:15:23.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ComposterController.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Controllers\\ComposterController.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Controllers\\ComposterController.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T13:14:56.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Controllers\\AuthenticationController.cs",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\AuthenticationController.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Controllers\\AuthenticationController.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T13:14:15.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CMakeWorkspaceSettings.json",
+              "DocumentMoniker": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\.vs\\CMakeWorkspaceSettings.json",
+              "RelativeDocumentMoniker": ".vs\\CMakeWorkspaceSettings.json",
+              "ToolTip": "C:\\Users\\tester\\source\\repos\\Hack_Tues_12_Root_-_Rot\\.vs\\CMakeWorkspaceSettings.json",
+              "RelativeToolTip": ".vs\\CMakeWorkspaceSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-27T13:13:27.356Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
