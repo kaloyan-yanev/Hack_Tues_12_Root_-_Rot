@@ -112,7 +112,7 @@ export function NavBar({ onAddComposter, onRemoveMode }) {
     return (
         <>
             <nav className={styles.navbar}>
-                <span className={styles.brand}>🌿 Root Rot</span>
+                <span className={styles.brand}>🌿 Root & Rot</span>
 
                 <div className={styles.center}>
                     {addState === "input" ? (

@@ -87,7 +87,7 @@ export default function SignUp() {
         <>
         <img className={styles.farmer} src="/public/farmer2.jpg"></img>,
             <div className={styles.container}>
-                <span className={styles.brand}>🌿 Root Rot</span>
+                <span className={styles.brand}>🌿 Root & Rot</span>
             <a href="/login" className={styles.signup}>
                 Have an account? Sign in
             </a>
