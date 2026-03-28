@@ -2,7 +2,7 @@
 
 Root&Rot Rot e aвтоматизиран smart компостер, който позволява на големи магазини и ресторанти да рециклират техните хранителни остатъци, непродадена или с изтекъл срок на годност хранителна стока и остатъчен опаковачен материал, като ги компостират в натурална тор.
 
-![Tracky Rover](readme_pictures/image.jpg)
+
 
 ## Какво прави
 
@@ -32,8 +32,6 @@ Root&Rot Rot e aвтоматизиран smart компостер, който п
 
 ## Прототип
 
-![Tracky Circuit](readme_pictures/circuit_image_1.png)
-![Tracky 3D Print](readme_pictures/image3dprint.png)
 
 ## Hardware
 
