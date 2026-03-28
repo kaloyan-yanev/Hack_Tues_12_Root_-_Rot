@@ -45,12 +45,6 @@ Root&Rot Rot e aвтоматизиран smart компостер, който п
 
 ## Stack
 
-- `embedded/` rover control, sensors, GPS, motors, cameras
-- `plant_pipeline/` plant localization and anomaly detection
-- `server/` auth, plant reports, feedback, WebSockets
-- `patatnikClient/` iOS app with Apple Maps
-- `rl/` reinforcement learning experiments for autonomous navigation
-
 ## Равитие в бъдещето
 
 Root&Rot ще се използва във всеки магазин и рестурант, за да рециклира продукти
