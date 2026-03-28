@@ -11,8 +11,6 @@ Preferences preferences;
 
 #define CONFIG_FILE "/config.json"
 
-
-
 const unsigned long MINUTE = 60UL * 1000UL;
 String module_name = "default";//задава уникално име при произвеждане на самия компостер
 uint8_t temp_treshhold; //в градуси целзий
@@ -133,48 +131,53 @@ void reconnect() {
 // 1. 📌 PINS (HARDWARE LAYER)
 // =======================================================
 
-#define ONE_WIRE_BUS 2
+#include <OneWire.h>
+#include <DallasTemperature.h>
 
-#define METHANE_PIN 7
-#define CO2_PIN     8
-#define HUM_PIN     9
+// =======================================================
+// 1. 📌 PIN DEFINITIONS
+// =======================================================
 
-#define FLOW_PIN    10
+#define TEMP1_PIN D4   // D4
+//#define TEMP2_PIN D5   // D5
+
+#define METHANE_PIN A1   // A1
+#define CO2_PIN     A2   // A2
+#define HUM_PIN     A0   // A0
+
+#define FLOW_PIN    6    // D6 (⚠️ risky but as requested)
 
 
 // =======================================================
 // 2. ⚙️ CONSTANTS (CALIBRATION / MATH MODEL)
 // =======================================================
-
 #define ADC_REF_VOLTAGE 3.3
 #define ADC_RESOLUTION 4095.0
-
-#define RL 10.0  // load resistor (kΩ)
+#define RL 10.0  // Load resistor (kΩ)
 
 // Flow sensor calibration
 float FLOW_K = 7.5;
 
-// MQ calibration (must be tuned)
+// MQ sensor calibration
 float R0_MQ2 = 10.0;
 float R0_MQ135 = 10.0;
 
 // MQ curve constants
 #define MQ2_A 574.25
 #define MQ2_B -2.222
-
 #define MQ135_A 110.47
 #define MQ135_B -2.862
-
 
 // =======================================================
 // 3. 🔌 HARDWARE OBJECTS
 // =======================================================
 
-OneWire oneWire(ONE_WIRE_BUS);
-DallasTemperature sensors(&oneWire);
+// Two separate OneWire buses
+OneWire oneWire1(TEMP1_PIN);
+//OneWire oneWire2(TEMP2_PIN);
 
-DeviceAddress tempSensor1, tempSensor2;
-
+DallasTemperature sensors1(&oneWire1);
+//DallasTemperature sensors2(&oneWire2);
 
 // Flow interrupt counter
 volatile int pulseCount = 0;
@@ -199,13 +202,11 @@ float readVoltage(int pin) {
     return (raw / ADC_RESOLUTION) * ADC_REF_VOLTAGE;
 }
 
-
 // Voltage → MQ resistance (Rs)
 float getRs(float voltage) {
     if (voltage <= 0.01) return 9999;
     return ((ADC_REF_VOLTAGE - voltage) / voltage) * RL;
 }
-
 
 // Rs → PPM model
 float getPPM(float rs, float r0, float A, float B) {
@@ -239,23 +240,49 @@ float getFlowRate() {
     return (float)lastPulseCount / FLOW_K;
 }
 
+
 // =======================================================
 // 7. 📡 PUBLIC API (CLEAN INTERFACE)
 // =======================================================
 
 // ---- TEMPERATURE ----
 float getTemp1() {
-    sensors.requestTemperatures();
-    return sensors.getTempC(tempSensor1);
+    sensors1.requestTemperatures();
+    return sensors1.getTempCByIndex(0);
 }
 
-float getTemp2() {
-    sensors.requestTemperatures();
-    return sensors.getTempC(tempSensor2);
+//float getTemp2() {
+//    sensors2.requestTemperatures();
+//    return sensors2.getTempCByIndex(0);
+//}
+
+// ---- GAS SENSORS ----
+float getMethane() {
+    float v = readVoltage(METHANE_PIN);
+    float rs = getRs(v);
+    return getPPM(rs, R0_MQ2, MQ2_A, MQ2_B);
 }
 
+float getCO2() {
+    float v = readVoltage(CO2_PIN);
+    float rs = getRs(v);
+    return getPPM(rs, R0_MQ135, MQ135_A, MQ135_B);
+}
+
+// ---- HUMIDITY ----
+float getHumidity() {
+    float v = readVoltage(HUM_PIN);
+
+    float h = (v - 0.8) * (100.0 / (3.0 - 0.8));
+
+    if (h < 0) h = 0;
+    if (h > 100) h = 100;
+
+    return h;
+}
+
+// ---- CH4 BUFFER / TREND ----
 #define SIZE 10
-
 float ch4_buffer[SIZE];
 unsigned long ch4BufferIndex = 0;
 bool buffer_full = false;
@@ -287,66 +314,87 @@ bool isMethaneRising() {
     return rising_count >= (SIZE - 1) * 0.6;
 }
 
-// ---- GAS SENSORS ----
-float getMethane() {
-    float v = readVoltage(METHANE_PIN);
-    float rs = getRs(v);
-    return getPPM(rs, R0_MQ2, MQ2_A, MQ2_B);
+double Kp_temp = 8.0, Ki_temp = 0.3, Kd_temp = 0.0;  // PI for temperature
+double Kp_hum = 2.5, Ki_hum = 0.2, Kd_hum = 0.4;    // PID for humidity
+
+// --- PID objects ---
+PID tempPID(&currentTemp, &heaterOutput, &tempSetpoint, Kp_temp, Ki_temp, Kd_temp, DIRECT);
+PID humPID(&currentHumidity, &pumpOutput, &humiditySetpoint, Kp_hum, Ki_hum, Kd_hum, DIRECT);
+
+// --- Timing ---
+const unsigned long TEMP_INTERVAL = 3000;     // 3 sec for temperature
+const unsigned long HUM_INTERVAL = 1000;      // 1 sec for humidity
+unsigned long lastTempUpdate = 0;
+unsigned long lastHumUpdate = 0;
+
+// --- Time-proportioned relay ---
+const unsigned long RELAY_CYCLE = 5000; // 5-second relay cycle
+unsigned long relayCycleStart = 0;
+
+void setupPID() {
+    tempPID.SetMode(AUTOMATIC);
+    tempPID.SetOutputLimits(0, 255);  // 0-255 scaled for relay time proportion
+    humPID.SetMode(AUTOMATIC);
+    humPID.SetOutputLimits(0, 255);   // 0-255 PWM for pump
 }
 
-float getCO2() {
-    float v = readVoltage(CO2_PIN);
-    float rs = getRs(v);
-    return getPPM(rs, R0_MQ135, MQ135_A, MQ135_B);
+// Call this in your main loop
+void updatePID() {
+    unsigned long now = millis();
+
+    // --- Temperature PI (slow) ---
+    if (now - lastTempUpdate >= TEMP_INTERVAL) {
+        lastTempUpdate = now;
+        currentTemp = getTemp1();  // your abstract function
+
+        tempPID.Compute();
+
+        // Time-proportioned relay
+        if (now - relayCycleStart >= RELAY_CYCLE) relayCycleStart = now;
+        unsigned long onTime = (heaterOutput / 255.0) * RELAY_CYCLE;
+
+        if (now - relayCycleStart < onTime) setPumpHeaterRelay(true);
+        else setPumpHeaterRelay(false);
+    }
+
+    // --- Humidity PID (faster) ---
+    if (now - lastHumUpdate >= HUM_INTERVAL) {
+        lastHumUpdate = now;
+        currentHumidity = getHumidity();  // your abstract function
+
+        humPID.Compute();
+
+        // Apply PWM to pump
+        setPumpSpeed((uint8_t)pumpOutput);
+    }
 }
 
-
-// ---- HUMIDITY ----
-float getHumidity() {
-    float v = readVoltage(HUM_PIN);
-
-    float h = (v - 0.8) * (100.0 / (3.0 - 0.8));
-
-    if (h < 0) h = 0;
-    if (h > 100) h = 100;
-
-    return h;
-}
 
 // =======================================================
 // 8. 🛠 SETUP
 // =======================================================
 
-void setupSensors() {
-    Serial.println("1111------");
-    sensors.begin();
-    Serial.println("1111------");
 
-    sensors.getAddress(tempSensor1, 0);
-    Serial.println("1111------");
-    sensors.getAddress(tempSensor2, 1);
-    Serial.println("1111------");
-    delay(1000);
+void setupSensors() {
+    Serial.println("Initializing sensors...");
+
+    sensors1.begin();
+    //sensors2.begin();
 
     analogSetAttenuation(ADC_11db);
     analogSetPinAttenuation(CO2_PIN, ADC_11db);
-    //Serial.println("1111------");
-    //delay(500);
 
     pinMode(FLOW_PIN, INPUT_PULLUP);
-    //delay(500);
-    //Serial.println("1111------");
-    
     attachInterrupt(digitalPinToInterrupt(FLOW_PIN), flowPulse, RISING);
-    //Serial.println("1111------");
-    //delay(500);
+
+    Serial.println("Sensors ready!");
 }
 
-#define PWM_PUMP_PIN 4
+#define PWM_PUMP_PIN D7
 
 // Relay outputs
-#define RELAY_PUMP_HEATER_PIN 14
-#define RELAY_MOTOR_PIN        15
+#define RELAY_PUMP_HEATER_PIN D9
+#define RELAY_MOTOR_PIN D8
 
 
 // =======================================================
@@ -365,9 +413,7 @@ void setupSensors() {
 void setupActuators() {
 
     // PWM setup for pump
-    ledcSetup(PWM_CHANNEL, PWM_FREQ, PWM_RES_BITS);
-    Serial.println("1111------");
-    ledcAttachPin(PWM_PUMP_PIN, PWM_CHANNEL);
+    ledcAttachChannel(PWM_PUMP_PIN, PWM_FREQ, PWM_RES_BITS, PWM_CHANNEL);
     Serial.println("1111------");
     ledcWrite(PWM_CHANNEL, 0);
 
@@ -408,11 +454,11 @@ void setPumpSpeed(uint8_t pwmValue) {
 // =======================================================
 
 void setPumpHeaterRelay(bool state) {
-    digitalWrite(RELAY_PUMP_HEATER_PIN, state ? HIGH : LOW);
+    digitalWrite(RELAY_PUMP_HEATER_PIN, state ? LOW : HIGH);
 }
 
 void setMotorRelay(bool state) {
-    digitalWrite(RELAY_MOTOR_PIN, state ? HIGH : LOW);
+    digitalWrite(RELAY_MOTOR_PIN, state ? LOW : HIGH);
 }
 
 bool motorOn = false;
@@ -446,7 +492,11 @@ void setup() {
   Serial.begin(115200);
   delay(1000);
 
-  
+  setupSensors();
+  //Serial.println("1111------");
+  //delay(500);
+  //Serial.println("1111------");
+  setupActuators();  
 
   // ===== LittleFS =====
   if (!LittleFS.begin(true)) {
@@ -511,12 +561,6 @@ void setup() {
   // MQTT setup
   client.setServer(mqtt_server, mqtt_port);
   client.setCallback(callback);
-
-  setupSensors();
-  //Serial.println("1111------");
-  //delay(500);
-  //Serial.println("1111------");
-  setupActuators();
 }
 
 // ===== LOOP =====
@@ -529,7 +573,7 @@ void loop() {
 
 
   static unsigned long lastMsg = 0;
-    if (millis() - lastMsg > MINUTE*0.5) {
+    if (millis() - lastMsg > MINUTE*0.25) {
         lastMsg = millis();
 
         // =======================================================
@@ -541,7 +585,7 @@ void loop() {
         doc["compost_ID"] = module_name;
 
         // ordered sensor data
-        doc["temperature"] = (getTemp1()+getTemp2())/2;   // or avg if needed
+        doc["temperature"] = getTemp1();
         doc["humidity"] = getHumidity();
 
         doc["methane"] = getMethane();
@@ -601,9 +645,9 @@ void loop() {
     }
 
     static unsigned long stirInterval = 0;
-    if (millis() - stirInterval > MINUTE*0.5) {
+    if (millis() - stirInterval > MINUTE/6) {
         stirInterval = millis();
-        MotorOnFor(10000);
+        MotorOnFor(MINUTE/12);
     }
   
     updateMotor();
