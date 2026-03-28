@@ -12,8 +12,8 @@ args = parser.parse_args()
 device = args.device
 value = args.v
 
-topic = "machines/control/temp_tresh/" + device
-broker = "192.168.0.138"
+topic = "machines/control/" + device + "/temp_tresh/"
+broker = "localhost"
 
 client = mqtt.Client()
 client.connect(broker, 1883)

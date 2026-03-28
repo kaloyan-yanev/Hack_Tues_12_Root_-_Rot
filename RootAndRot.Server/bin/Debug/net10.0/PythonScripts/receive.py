@@ -14,7 +14,7 @@ connection = mysql.connector.connect(
     database = config.get('DatabaseSection', 'database.dbname')
 )
 
-broker = "192.168.0.138"
+broker = "localhost"
 topic = "machines/sensors/+"
 
 print("Connected!")

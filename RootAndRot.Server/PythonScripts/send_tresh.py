@@ -12,7 +12,7 @@ args = parser.parse_args()
 device = args.device
 value = args.v
 
-topic = "machines/control/temp_tresh/" + device
+topic = "machines/control/" + device + "/temp_tresh/"
 broker = "localhost"
 
 client = mqtt.Client()
