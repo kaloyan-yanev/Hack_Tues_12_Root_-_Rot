@@ -589,10 +589,12 @@ void loop() {
     }
 
     static unsigned long stirInterval = 0;
-    if (millis() - stirInterval > MINUTE/6) {
+    if (millis() - stirInterval > MINUTE*0.5) {
         stirInterval = millis();
         MotorOnFor(MINUTE/12);
     }
   
     updateMotor();
+
+    //PID controller of the system to keep desired humidity level and temperature via heaters, water pumps and flow sensors
 }
