@@ -1,0 +1,122 @@
+﻿import { useState, useEffect } from "react";
+import styles from "./Container.module.css";
+
+function Container({ device, isSelected, onSelect, onRemove }) {
+  const [tempThreshold, setTempThreshold] = useState(0);
+
+  const handleContainerClick = (e) => {
+    e.stopPropagation();
+    onSelect();
+  };
+
+  const handleThresholdChange = (index) => {
+    setTempThreshold(index);
+  };
+
+  const getProgressBarColor = (progress) => {
+    const hue = (progress / 100) * 120;
+    return `hsl(${hue}, 100%, 50%)`;
+  };
+
+  const handleRemoveClick = (e) => {
+    e.stopPropagation();
+    if (window.__navbarRequestRemove) {
+      window.__navbarRequestRemove(device.MAC, onRemove);
+    }
+  };
+
+  if (!device) {
+    return null;
+    }
+    console.log("Raw Response Body1:", device);
+
+  // Ensure device has all required properties
+const deviceData = { 
+    MAC: device.mac|| "Unknown",
+    Temp: device.temp ?? 0,
+    Humidity: device.humidity ?? 0,
+    Methane: device.methane ?? 0,
+    CO2: device.cO2 ?? 0,   // C# serializes "CO2" as "cO2"
+    Progress: device.progress ?? 0
+};
+
+  return (
+    <div
+      className={`${styles.container} ${isSelected ? styles.selected : ""}`}
+      onClick={handleContainerClick}
+    >
+      <div className={styles.header}>
+        <div className={styles.id}>
+          <span className={styles.label}>ID:</span>
+          <span className={styles.value}>{deviceData.MAC}</span>
+        </div>
+        {isSelected && (
+          <button 
+            className={styles.removeBtn} 
+            onClick={handleRemoveClick} 
+            title="Remove this composter"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+
+      <div className={styles.content}>
+        <div className={styles.thresholdSection}>
+          <label className={styles.thresholdLabel}>Temp Threshold:</label>
+          <div className={styles.checkboxGroup}>
+            {[0, 1, 2].map((index) => (
+              <label key={index} className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name={`threshold-${deviceData.MAC}`}
+                  checked={tempThreshold === index}
+                  onChange={() => handleThresholdChange(index)}
+                  className={styles.radioInput}
+                />
+                <span className={styles.radioBox} />
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.metricsGrid}>
+          <div className={styles.metric}>
+            <span className={styles.metricLabel}>Methane:</span>
+            <span className={styles.metricValue}>{deviceData.Methane}%</span>
+          </div>
+          <div className={styles.metric}>
+            <span className={styles.metricLabel}>CO₂:</span>
+            <span className={styles.metricValue}>{deviceData.CO2}%</span>
+          </div>
+          <div className={styles.metric}>
+            <span className={styles.metricLabel}>Humidity:</span>
+            <span className={styles.metricValue}>{deviceData.Humidity.toFixed(1)}%</span>
+          </div>
+          <div className={styles.metric}>
+            <span className={styles.metricLabel}>Temperature:</span>
+            <span className={styles.metricValue}>{deviceData.Temp.toFixed(1)}°C</span>
+          </div>
+        </div>
+
+        <div className={styles.progressSection}>
+          <div className={styles.progressLabel}>
+            <span>Progress</span>
+            <span>{deviceData.Progress.toFixed(1)}%</span>
+          </div>
+          <div className={styles.progressBarContainer}>
+            <div
+              className={styles.progressBar}
+              style={{
+                width: `${Math.min(100, Math.max(0, deviceData.Progress))}%`,
+                backgroundColor: getProgressBarColor(deviceData.Progress),
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Container;

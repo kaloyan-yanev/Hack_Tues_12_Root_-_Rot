@@ -1,0 +1,154 @@
+﻿import { useState } from "react";
+import styles from "./Container.module.css";
+
+function Container({ device, isSelected, onSelect, onRemove }) {
+    const [selectedThresholds, setSelectedThresholds] = useState(new Set());
+
+    const thresholdEmojis = ["🥗", "🥛", "🥩"]; // change these to whatever you like
+
+    const handleContainerClick = (e) => {
+        e.stopPropagation();
+        onSelect();
+    };
+
+    const handleThresholdChange = async (e, index) => {
+        e.stopPropagation();
+        const newSet = new Set(selectedThresholds);
+        if (newSet.has(index)) {
+            newSet.delete(index);
+        } else {
+            newSet.add(index);
+        }
+        setSelectedThresholds(newSet);
+
+        // Send changes to backend
+        const hasVegetables = newSet.has(0);
+        const hasMilk = newSet.has(1);
+        const hasMeat = newSet.has(2);
+
+        try {
+            const token = localStorage.getItem("authToken");
+            const resp = await fetch("https://localhost:61954/api/composter/ChangeTempThreshold", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    DeviceId: deviceData.DeviceID,
+                    HasVegetables: hasVegetables,
+                    HasMeat: hasMeat,
+                    HasDairy: hasMilk
+                })
+            });
+
+            if (!resp.ok) {
+                console.error("Failed to update threshold:", resp.status);
+            }
+        } catch (err) {
+            console.error("Error updating threshold:", err);
+        }
+    };
+
+    const getProgressBarColor = (progress) => {
+        const hue = (progress / 100) * 120;
+        return `hsl(${hue}, 100%, 50%)`;
+    };
+
+    const handleRemoveClick = (e) => {
+        e.stopPropagation();
+        if (window.__navbarRequestRemove) {
+            window.__navbarRequestRemove(device.DeviceID, onRemove);
+        }
+    };
+
+    if (!device) return null;
+
+    const deviceData = {
+        DeviceID: device.deviceID || "Unknown",
+        MAC: device.mac || "Unknown",
+        Temp: device.temp ?? 0,
+        Humidity: device.humidity ?? 0,
+        Methane: device.methane ?? 0,
+        CO2: device.cO2 ?? 0,
+        Progress: device.progress ?? 0
+    };
+
+    return (
+        <div
+            className={`${styles.container} ${isSelected ? styles.selected : ""}`}
+            onClick={handleContainerClick}
+        >
+            <div className={styles.header}>
+                <div className={styles.id}>
+                    <span className={styles.label}>ID:</span>
+                    <span className={styles.value}>{deviceData.MAC}</span>
+                </div>
+                {isSelected && (
+                    <button className={styles.removeBtn} onClick={handleRemoveClick} title="Remove this composter">
+                        ?
+                    </button>
+                )}
+            </div>
+
+            <div className={styles.content}>
+                <div className={styles.thresholdSection}>
+                    <label className={styles.thresholdLabel}>Temp Threshold:</label>
+                    <div className={styles.checkboxGroup}>
+                        {thresholdEmojis.map((emoji, index) => (
+                            <span
+                                key={index}
+                                onClick={(e) => handleThresholdChange(e, index)}
+                                className={`${styles.emojiBtn} ${selectedThresholds.has(index) ? styles.emojiSelected : ""}`}
+                            >
+                                {emoji}
+                            </span>
+                        ))}
+                    </div>
+                    {selectedThresholds.size > 0 && (
+                        <div className={styles.selectedThresholds}>
+                            Selected: {Array.from(selectedThresholds).sort((a, b) => a - b).map(i => ["Vegetables", "Milk", "Meat"][i]).join(", ")}
+                        </div>
+                    )}
+                </div>
+
+                <div className={styles.metricsGrid}>
+                    <div className={styles.metric}>
+                        <span className={styles.metricLabel}>Methane:</span>
+                        <span className={styles.metricValue}>{deviceData.Methane}%</span>
+                    </div>
+                    <div className={styles.metric}>
+                        <span className={styles.metricLabel}>CO2:</span>
+                        <span className={styles.metricValue}>{deviceData.CO2}%</span>
+                    </div>
+                    <div className={styles.metric}>
+                        <span className={styles.metricLabel}>Humidity:</span>
+                        <span className={styles.metricValue}>{deviceData.Humidity.toFixed(1)}%</span>
+                    </div>
+                    <div className={styles.metric}>
+                        <span className={styles.metricLabel}>Temperature:</span>
+                        <span className={styles.metricValue}>{deviceData.Temp.toFixed(1)}°C</span>
+                    </div>
+                </div>
+
+                <div className={styles.progressSection}>
+                    <div className={styles.progressLabel}>
+                        <span>Progress</span>
+                        <span>{deviceData.Progress.toFixed(1)}%</span>
+                    </div>
+                    <div className={styles.progressBarContainer}>
+                        <div
+                            className={styles.progressBar}
+                            style={{
+                                width: `${Math.min(100, Math.max(0, deviceData.Progress))}%`,
+                                backgroundColor: getProgressBarColor(deviceData.Progress),
+                            }}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Container;

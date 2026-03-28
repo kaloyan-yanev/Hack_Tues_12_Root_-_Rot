@@ -1,0 +1,101 @@
+.container {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 50%;
+    background: #ffffff;
+    top: 0;
+    left: 0;
+}
+
+.form {
+    padding: 2rem;
+    padding-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.title {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 50px;
+    text-align: center;
+    color: rgba(30,30,30,0.8);
+    font-family: 'Satoshi-Bold', sans-serif;
+}
+
+.label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    margin-top: 0.35rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.button {
+    width: 100%;
+    padding: 0.65rem;
+    margin-top: 1rem;
+    border-radius: 6px;
+    border: none;
+    background: #0078d4;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.error {
+    background: #fff1f0;
+    color: #c4191f;
+    padding: 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.signup {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 30px;
+    color: #101020;
+    display: inline-block;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+    .signup:hover {
+        color: var(--sm-accent, #5227ff);
+    }
+
+.farmer {
+    position: fixed; 
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: auto;
+    max-width: 50vw;
+    object-fit: cover;
+    z-index: -1;
+}
+.brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 23px;
+    color: #303030;
+    letter-spacing: -0.3px;
+    user-select: none;
+    position:fixed;
+    left: 20px;
+    top: 20px;
+}

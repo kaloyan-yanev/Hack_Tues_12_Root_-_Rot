@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700&display=swap');
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    background: rgba(10, 12, 16, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    font-family: 'DM Sans', sans-serif;
+}
+
+.brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    color: #e8f5e2;
+    letter-spacing: -0.3px;
+    user-select: none;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ── Add Composter ── */
+.addBtn,
+.addInput {
+    height: 38px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    border: none;
+}
+
+.addBtn {
+    padding: 0 18px;
+    background: rgba(134, 199, 100, 0.15);
+    color: #a3d977;
+    border: 1px solid rgba(134, 199, 100, 0.25);
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+    .addBtn:hover {
+        background: rgba(134, 199, 100, 0.25);
+        border-color: rgba(134, 199, 100, 0.45);
+        color: #c6eb9a;
+    }
+
+    .addBtn.success {
+        background: rgba(100, 220, 130, 0.2);
+        border-color: rgba(100, 220, 130, 0.5);
+        color: #6ddc8c;
+    }
+
+.addBtnIcon {
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.addBtn:hover .addBtnIcon {
+    transform: rotate(90deg);
+}
+
+.addInput {
+    width: 190px;
+    padding: 0 14px;
+    background: rgba(20, 25, 20, 0.9);
+    color: #e8f5e2;
+    border: 1px solid rgba(134, 199, 100, 0.5);
+    box-shadow: 0 0 0 3px rgba(134, 199, 100, 0.1);
+    caret-color: #a3d977;
+    animation: slideIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+    .addInput::placeholder {
+        color: rgba(163, 217, 119, 0.3);
+        font-style: italic;
+        font-size: 13px;
+    }
+
+    .addInput:focus {
+        border-color: rgba(134, 199, 100, 0.75);
+        box-shadow: 0 0 0 3px rgba(134, 199, 100, 0.15);
+    }
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scaleX(0.7) translateX(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1) translateX(0);
+    }
+}
+
+.successText {
+    animation: successPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes successPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ── Remove Composter ── */
+.removeBtn {
+    padding: 0 18px;
+    height: 38px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: rgba(255, 80, 80, 0.08);
+    color: rgba(255, 130, 130, 0.7);
+    border: 1px solid rgba(255, 80, 80, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    outline: none;
+}
+
+    .removeBtn:hover:not(.active) {
+        background: rgba(255, 80, 80, 0.14);
+        border-color: rgba(255, 80, 80, 0.28);
+        color: rgba(255, 150, 150, 0.9);
+    }
+
+    .removeBtn.active {
+        background: rgba(220, 50, 50, 0.22);
+        border-color: rgba(220, 50, 50, 0.6);
+        color: #ff6b6b;
+        box-shadow: 0 0 12px rgba(220, 50, 50, 0.25);
+        animation: pulseRed 2s ease-in-out infinite;
+    }
+
+@keyframes pulseRed {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(220, 50, 50, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(220, 50, 50, 0.4);
+    }
+}
+
+.removeDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.removeBtn.active .removeDot {
+    animation: dotBlink 1.2s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(0.7);
+    }
+}
+
+/* ── Login ── */
+.loginBtn {
+    padding: 0 22px;
+    height: 38px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #e8f5e2;
+    color: #1a2616;
+    border: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.1px;
+}
+
+    .loginBtn:hover {
+        background: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(232, 245, 226, 0.2);
+    }
+
+    .loginBtn:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+/* ── Popup ── */
+.popupOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.15s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.popupCard {
+    background: #13181a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px 36px;
+    max-width: 360px;
+    width: 90%;
+    text-align: center;
+    animation: slideUp 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    font-family: 'DM Sans', sans-serif;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.popupIcon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.popupTitle {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    color: #f0f0f0;
+    margin: 0 0 8px;
+}
+
+.popupSubtitle {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0 0 28px;
+    line-height: 1.5;
+}
+
+.popupActions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.popupCancel {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+    .popupCancel:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+    }
+
+.popupConfirm {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 9px;
+    border: none;
+    background: rgba(220, 50, 50, 0.9);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+    .popupConfirm:hover {
+        background: rgba(220, 50, 50, 1);
+        box-shadow: 0 4px 14px rgba(220, 50, 50, 0.4);
+    }
+
+/* ── Remove mode cursor ── */
+:global(body.remove-mode) * {
+    cursor: crosshair !important;
+}

@@ -1,0 +1,158 @@
+﻿import React, { useState, useEffect } from "react";
+import NavBar from '../components/NavBar'
+import Container from '../components/Container'
+import styles from './Home.module.css';
+
+function Home() {
+    const [devices, setDevices] = useState([]);
+    const [selectedDevice, setSelectedDevice] = useState(null);
+    const [removeMode, setRemoveMode] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    // Fetch all devices on component mount
+    useEffect(() => {
+        fetchDevices();
+    }, []);
+
+    const fetchDevices = async () => {
+        try {
+            setLoading(true);
+            const token = localStorage.getItem("authToken");
+            if (!token) {
+                setError("Not authenticated");
+                return;
+            }
+
+            const resp = await fetch("/api/composter/GetAllData", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!resp.ok) {
+                throw new Error("Failed to fetch devices");
+            }
+
+            const data = await resp.json();
+            setDevices(data);
+            setError("");
+        } catch (err) {
+            setError(err.message || "Error loading devices");
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleAddComposter = async (macAddress) => {
+        try {
+            const token = localStorage.getItem("authToken");
+            if (!token) {
+                setError("Not authenticated");
+                return;
+            }
+
+            const resp = await fetch("/api/composter/AddDevice", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ MACAddress: macAddress })
+            });
+
+            if (!resp.ok) {
+                throw new Error("Failed to add device");
+            }
+
+            // Refresh the device list
+            await fetchDevices();
+        } catch (err) {
+            setError(err.message || "Error adding device");
+            console.error(err);
+        }
+    };
+
+    const handleRemoveDevice = async (macAddress) => {
+        try {
+            const token = localStorage.getItem("authToken");
+            if (!token) {
+                setError("Not authenticated");
+                return;
+            }
+
+            // Call API to remove device (you may need to add this endpoint to the backend)
+            const resp = await fetch(`/api/composter/RemoveDevice?macAddress=${macAddress}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!resp.ok) {
+                throw new Error("Failed to remove device");
+            }
+
+            // Refresh the device list and clear selection
+            setSelectedDevice(null);
+            await fetchDevices();
+        } catch (err) {
+            setError(err.message || "Error removing device");
+            console.error(err);
+        }
+    };
+
+    const handleContainerSelect = (macAddress) => {
+        setSelectedDevice(macAddress);
+    };
+
+    const handleContainerRemove = (macAddress) => {
+        if (removeMode) {
+            handleRemoveDevice(macAddress);
+        }
+    };
+
+    const handleRemoveMode = (isActive) => {
+        setRemoveMode(isActive);
+        if (!isActive) {
+            setSelectedDevice(null);
+        }
+    };
+
+    // Close selection when clicking outside containers or turning off remove mode
+    const handlePageClick = () => {
+        setSelectedDevice(null);
+    };
+
+    return (
+        <div className={styles.page} onClick={handlePageClick}>
+            <NavBar onAddComposter={handleAddComposter} onRemoveMode={handleRemoveMode} />
+
+            <div className={styles.containerList}>
+                {error && <div className={styles.error}>{error}</div>}
+
+                {loading ? (
+                    <div className={styles.loading}>Loading devices...</div>
+                ) : devices.length === 0 ? (
+                    <div className={styles.empty}>No devices yet. Add one using the button above!</div>
+                ) : (
+                    devices.map((device) => (
+                        <Container
+                            key={device.MAC}
+                            device={device}
+                            isSelected={selectedDevice === device.MAC}
+                            onSelect={() => handleContainerSelect(device.MAC)}
+                            onRemove={handleContainerRemove}
+                        />
+                    ))
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default Home;
