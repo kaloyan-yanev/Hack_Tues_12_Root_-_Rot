@@ -355,3 +355,4 @@ C:\Users\adria\Desktop\School\HackTues12\Hack_Tues_12_Root_-_Rot\RootAndRot.Serv
 C:\Users\adria\Desktop\School\HackTues12\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\PythonScripts\receive.py
 C:\Users\adria\Desktop\School\HackTues12\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\PythonScripts\send_stir.py
 C:\Users\adria\Desktop\School\HackTues12\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\PythonScripts\send_tresh.py
+C:\Users\adria\Desktop\School\HackTues12\Hack_Tues_12_Root_-_Rot\RootAndRot.Server\bin\Debug\net10.0\PythonScripts\dbconnection.properties

@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\RootAndRot.Server",
-    "\\RootAndRot.Server\\Controllers"
+    "\\RootAndRot.Server\\Controllers",
+    "\\RootAndRot.Server\\PythonScripts",
+    "\\RootAndRot.Server\\Services"
   ],
   "SelectedNode": "\\RootAndRot.slnx",
   "PreviewInSolutionExplorer": false

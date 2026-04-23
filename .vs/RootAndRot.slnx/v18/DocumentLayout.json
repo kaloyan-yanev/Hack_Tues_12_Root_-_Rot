@@ -3,32 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\pythonscripts\\send_tresh.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\pythonscripts\\send_tresh.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\pythonscripts\\send_stir.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\pythonscripts\\send_stir.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\data\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\data\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\pythonscripts\\receive.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\pythonscripts\\receive.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\pythonscripts\\dbconnection.properties||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\pythonscripts\\dbconnection.properties||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\pythonscripts\\send_stir.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\pythonscripts\\send_stir.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\services\\composterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\services\\composterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\rootandrot.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\rootandrot.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\services\\pythonprocesshostedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\services\\pythonprocesshostedservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\controllers\\compostercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\controllers\\compostercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\services\\tempthresholdfactors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\services\\tempthresholdfactors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\controllers\\compostercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\controllers\\compostercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\pythonscripts\\send_tresh.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\pythonscripts\\send_tresh.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\rootandrot.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\rootandrot.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\components\\container.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -55,10 +71,6 @@
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\models\\stirtordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\data\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\data\\device.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -75,10 +87,6 @@
       "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B5E365F-D0A9-A598-7D1F-0B54685EDF83}|RootAndRot.Server\\RootAndRot.Server.csproj|solutionrelative:rootandrot.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|c:\\users\\adria\\desktop\\school\\hacktues12\\hack_tues_12_root_-_rot\\rootandrot.client\\src\\pages\\signup.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{319A721E-C6D2-E1BC-EF49-3F6A799A06BC}|rootandrot.client\\rootandrot.client.esproj|solutionrelative:rootandrot.client\\src\\pages\\signup.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
@@ -90,7 +98,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 284,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -110,45 +118,72 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
+              "Title": "PythonProcessHostedService.cs",
+              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\PythonProcessHostedService.cs",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\Services\\PythonProcessHostedService.cs",
+              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\PythonProcessHostedService.cs",
+              "RelativeToolTip": "RootAndRot.Server\\Services\\PythonProcessHostedService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T17:17:32.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dbconnection.properties",
+              "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\dbconnection.properties",
+              "RelativeDocumentMoniker": "RootAndRot.Server\\PythonScripts\\dbconnection.properties",
+              "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\dbconnection.properties",
+              "RelativeToolTip": "RootAndRot.Server\\PythonScripts\\dbconnection.properties",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-23T16:40:16.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "TempThresholdFactors.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\TempThresholdFactors.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Services\\TempThresholdFactors.cs",
               "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\TempThresholdFactors.cs",
               "RelativeToolTip": "RootAndRot.Server\\Services\\TempThresholdFactors.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAABsAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAkwBsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T02:44:37.218Z"
+              "WhenOpened": "2026-03-28T02:44:37.218Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "receive.py",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\receive.py",
               "RelativeDocumentMoniker": "RootAndRot.Server\\PythonScripts\\receive.py",
               "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\receive.py",
               "RelativeToolTip": "RootAndRot.Server\\PythonScripts\\receive.py",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2026-03-28T02:19:47.719Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "send_tresh.py",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\send_tresh.py",
               "RelativeDocumentMoniker": "RootAndRot.Server\\PythonScripts\\send_tresh.py",
               "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\send_tresh.py",
               "RelativeToolTip": "RootAndRot.Server\\PythonScripts\\send_tresh.py",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAswBYAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2026-03-28T02:19:40.409Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "StirTorDTO.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Models\\StirTorDTO.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Models\\StirTorDTO.cs",
@@ -160,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "ChangingTempThresholdDTO.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Models\\ChangingTempThresholdDTO.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Models\\ChangingTempThresholdDTO.cs",
@@ -172,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Data\\AppDbContext.cs",
@@ -184,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "DeviceDataDTO.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Models\\DeviceDataDTO.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Models\\DeviceDataDTO.cs",
@@ -196,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "global.json",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\global.json",
               "RelativeDocumentMoniker": "RootAndRot.Server\\global.json",
@@ -208,43 +243,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Program.cs",
               "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Program.cs",
               "RelativeToolTip": "RootAndRot.Server\\Program.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAAcwDgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T00:32:15.285Z"
+              "WhenOpened": "2026-03-28T00:32:15.285Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ComposterController.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Controllers\\ComposterController.cs",
               "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Controllers\\ComposterController.cs",
               "RelativeToolTip": "RootAndRot.Server\\Controllers\\ComposterController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAA9wEAAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAowEwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T00:32:15.285Z"
+              "WhenOpened": "2026-03-28T00:32:15.285Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ComposterService.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\ComposterService.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Services\\ComposterService.cs",
               "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\ComposterService.cs",
               "RelativeToolTip": "RootAndRot.Server\\Services\\ComposterService.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAIwJAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAmwJMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T00:32:15.305Z"
+              "WhenOpened": "2026-03-28T00:32:15.305Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 0,
               "Title": "Device.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Data\\Device.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Data\\Device.cs",
@@ -252,11 +290,12 @@
               "RelativeToolTip": "RootAndRot.Server\\Data\\Device.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAArwBsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T00:32:15.305Z"
+              "WhenOpened": "2026-03-28T00:32:15.305Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "AppDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Migrations\\AppDbContextModelSnapshot.cs",
@@ -268,7 +307,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "rootandrot.client.esproj",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\rootandrot.client.esproj",
               "RelativeDocumentMoniker": "rootandrot.client\\rootandrot.client.esproj",
@@ -280,7 +319,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "RootAndRot.Server.csproj",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\RootAndRot.Server.csproj",
               "RelativeDocumentMoniker": "RootAndRot.Server\\RootAndRot.Server.csproj",
@@ -292,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "IComposterService.cs",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\Services\\IComposterService.cs",
               "RelativeDocumentMoniker": "RootAndRot.Server\\Services\\IComposterService.cs",
@@ -304,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Container.jsx",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\components\\Container.jsx",
               "RelativeDocumentMoniker": "rootandrot.client\\src\\components\\Container.jsx",
@@ -316,20 +355,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "send_stir.py",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\send_stir.py",
               "RelativeDocumentMoniker": "RootAndRot.Server\\PythonScripts\\send_stir.py",
               "ToolTip": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\RootAndRot.Server\\PythonScripts\\send_stir.py",
               "RelativeToolTip": "RootAndRot.Server\\PythonScripts\\send_stir.py",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAswA4AAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2026-03-28T00:32:15.405Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "SignUp.jsx",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\SignUp.jsx",
               "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\SignUp.jsx",
@@ -341,7 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "Home.jsx",
               "DocumentMoniker": "C:\\Users\\adria\\Desktop\\School\\HackTues12\\Hack_Tues_12_Root_-_Rot\\rootandrot.client\\src\\pages\\Home.jsx",
               "RelativeDocumentMoniker": "rootandrot.client\\src\\pages\\Home.jsx",
